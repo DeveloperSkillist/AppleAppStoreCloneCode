@@ -13,9 +13,17 @@
 		365932452757846300E08E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 365932442757846300E08E8F /* Assets.xcassets */; };
 		365932482757846300E08E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 365932462757846300E08E8F /* LaunchScreen.storyboard */; };
 		365932502757893400E08E8F /* RootTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659324F2757893400E08E8F /* RootTabBarViewController.swift */; };
-		3659325227578C5D00E08E8F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659325127578C5D00E08E8F /* TodayViewController.swift */; };
+		3659325227578C5D00E08E8F /* TodayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659325127578C5D00E08E8F /* TodayCollectionViewController.swift */; };
 		3659325527578D1600E08E8F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3659325727578D1600E08E8F /* Localizable.strings */; };
 		3659325B27578D3B00E08E8F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659325A27578D3B00E08E8F /* String+Extension.swift */; };
+		365932632757941100E08E8F /* TodayAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932622757941100E08E8F /* TodayAccountCollectionViewCell.swift */; };
+		365932672757947E00E08E8F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 365932662757947E00E08E8F /* SnapKit */; };
+		3659326A2757968500E08E8F /* DownloadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932692757968500E08E8F /* DownloadableImageView.swift */; };
+		3659326D2757982400E08E8F /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659326C2757982400E08E8F /* ImageCache.swift */; };
+		3659326F275798AE00E08E8F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659326E275798AE00E08E8F /* APIKey.swift */; };
+		365932712757991200E08E8F /* AccountProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932702757991200E08E8F /* AccountProfileView.swift */; };
+		3659327327579CD900E08E8F /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659327227579CD900E08E8F /* TodayCell.swift */; };
+		3659327527579D0F00E08E8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659327427579D0F00E08E8F /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +35,18 @@
 		365932472757846300E08E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		365932492757846300E08E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3659324F2757893400E08E8F /* RootTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarViewController.swift; sourceTree = "<group>"; };
-		3659325127578C5D00E08E8F /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		3659325127578C5D00E08E8F /* TodayCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCollectionViewController.swift; sourceTree = "<group>"; };
 		3659325627578D1600E08E8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3659325827578D2D00E08E8F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3659325927578D2D00E08E8F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3659325A27578D3B00E08E8F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		365932622757941100E08E8F /* TodayAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayAccountCollectionViewCell.swift; sourceTree = "<group>"; };
+		365932692757968500E08E8F /* DownloadableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadableImageView.swift; sourceTree = "<group>"; };
+		3659326C2757982400E08E8F /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		3659326E275798AE00E08E8F /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		365932702757991200E08E8F /* AccountProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileView.swift; sourceTree = "<group>"; };
+		3659327227579CD900E08E8F /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
+		3659327427579D0F00E08E8F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365932672757947E00E08E8F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,9 +80,13 @@
 		3659323A2757845F00E08E8F /* AppleAppStore */ = {
 			isa = PBXGroup;
 			children = (
+				3659326B2757980900E08E8F /* Util */,
 				3659325D27578D7000E08E8F /* Delegate */,
 				3659325C27578D5C00E08E8F /* Extension */,
+				365932642757943900E08E8F /* Model */,
+				365932602757934000E08E8F /* Cell */,
 				3659325E27578D7D00E08E8F /* ViewController */,
+				365932682757963800E08E8F /* CustomView */,
 				3659325727578D1600E08E8F /* Localizable.strings */,
 				3659323F2757845F00E08E8F /* ViewController.swift */,
 				365932442757846300E08E8F /* Assets.xcassets */,
@@ -97,9 +117,60 @@
 			isa = PBXGroup;
 			children = (
 				3659324F2757893400E08E8F /* RootTabBarViewController.swift */,
-				3659325127578C5D00E08E8F /* TodayViewController.swift */,
+				3659325F27578F8700E08E8F /* Today */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3659325F27578F8700E08E8F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				3659325127578C5D00E08E8F /* TodayCollectionViewController.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		365932602757934000E08E8F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				365932612757935200E08E8F /* Today */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		365932612757935200E08E8F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				365932622757941100E08E8F /* TodayAccountCollectionViewCell.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		365932642757943900E08E8F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3659327227579CD900E08E8F /* TodayCell.swift */,
+				3659327427579D0F00E08E8F /* Enums.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		365932682757963800E08E8F /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				365932692757968500E08E8F /* DownloadableImageView.swift */,
+				365932702757991200E08E8F /* AccountProfileView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		3659326B2757980900E08E8F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3659326C2757982400E08E8F /* ImageCache.swift */,
+				3659326E275798AE00E08E8F /* APIKey.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +189,9 @@
 			dependencies = (
 			);
 			name = AppleAppStore;
+			packageProductDependencies = (
+				365932662757947E00E08E8F /* SnapKit */,
+			);
 			productName = AppleAppStore;
 			productReference = 365932382757845F00E08E8F /* AppleAppStore.app */;
 			productType = "com.apple.product-type.application";
@@ -147,6 +221,9 @@
 				ko,
 			);
 			mainGroup = 3659322F2757845F00E08E8F;
+			packageReferences = (
+				365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 365932392757845F00E08E8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,10 +251,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3659326A2757968500E08E8F /* DownloadableImageView.swift in Sources */,
 				365932402757845F00E08E8F /* ViewController.swift in Sources */,
 				365932502757893400E08E8F /* RootTabBarViewController.swift in Sources */,
-				3659325227578C5D00E08E8F /* TodayViewController.swift in Sources */,
+				3659326D2757982400E08E8F /* ImageCache.swift in Sources */,
+				3659326F275798AE00E08E8F /* APIKey.swift in Sources */,
+				365932712757991200E08E8F /* AccountProfileView.swift in Sources */,
+				365932632757941100E08E8F /* TodayAccountCollectionViewCell.swift in Sources */,
+				3659327527579D0F00E08E8F /* Enums.swift in Sources */,
+				3659325227578C5D00E08E8F /* TodayCollectionViewController.swift in Sources */,
 				3659323C2757845F00E08E8F /* AppDelegate.swift in Sources */,
+				3659327327579CD900E08E8F /* TodayCell.swift in Sources */,
 				3659325B27578D3B00E08E8F /* String+Extension.swift in Sources */,
 				3659323E2757845F00E08E8F /* SceneDelegate.swift in Sources */,
 			);
@@ -399,6 +483,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		365932662757947E00E08E8F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 365932302757845F00E08E8F /* Project object */;
 }

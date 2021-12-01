@@ -1,5 +1,5 @@
 //
-//  RottTabBarViewController.swift
+//  TodayViewController.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/01.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootTabBarViewController: UITabBarController {
+class TodayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

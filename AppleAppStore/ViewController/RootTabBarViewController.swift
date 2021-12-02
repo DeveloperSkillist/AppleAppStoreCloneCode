@@ -17,19 +17,27 @@ class RootTabBarViewController: UITabBarController {
     }
     
     func setupTabBar() {
-        tabBar.barTintColor = .darkGray
+        tabBar.barTintColor = .systemBackground
+        tabBar.tintColor = .link
     }
     
     func setupTabBarItem() {
         
         let layout = UICollectionViewFlowLayout()
-        let todayViewController = TodayViewController(collectionViewLayout: layout)
+        let todayViewController = TodayCollectionViewController(collectionViewLayout: layout)
         todayViewController.tabBarItem = UITabBarItem(
-            title: "투데이",
+            title: "today_title".localized,
             image: UIImage(systemName: "doc.richtext"),
             selectedImage: UIImage(systemName: "doc.richtext.fill")
         )
         
-        viewControllers = [todayViewController]
+        let gameViewController = GameNavigationController(rootViewController: GameViewController())
+        gameViewController.tabBarItem = UITabBarItem(
+            title: "game_title".localized,
+            image: UIImage(systemName: "gamecontroller"),
+            selectedImage: UIImage(systemName: "gamecontroller.fill")
+        )
+        
+        viewControllers = [todayViewController, gameViewController]
     }
 }

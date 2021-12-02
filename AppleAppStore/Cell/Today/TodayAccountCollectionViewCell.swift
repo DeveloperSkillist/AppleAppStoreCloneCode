@@ -12,14 +12,14 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 10)
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         return label
     }()
     
     private lazy var largeTitle: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.font = .systemFont(ofSize: 34, weight: .bold)
         return label
     }()
     
@@ -35,7 +35,7 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         [
             dateLabel,
             largeTitle,
@@ -45,17 +45,31 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         }
         
         dateLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(10)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.bottom.equalTo(largeTitle.snp.top)
         }
         
         largeTitle.snp.makeConstraints {
-            $0.top.equalTo(dateLabel.snp.bottom).offset(10)
             $0.leading.equalTo(dateLabel)
+            $0.bottom.equalTo(self.snp.bottom).inset(8)
         }
         
         accountProfileView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-10)
-            
+            $0.trailing.equalTo(dateLabel)
+            $0.bottom.equalToSuperview().inset(10)
+            $0.width.height.equalTo(30)
         }
+        accountProfileView.layer.cornerRadius = 15
+        accountProfileView.clipsToBounds = true
+        
+        dateLabel.text = getCurrentDate
+        largeTitle.text = "today_title".localized
+    }
+    
+    var getCurrentDate: String {
+        let dataFormatter = DateFormatter()
+        dataFormatter.dateFormat = "MM. dd. E"
+        dataFormatter.locale = Locale(identifier: "ko")
+        return dataFormatter.string(from: Date())
     }
 }

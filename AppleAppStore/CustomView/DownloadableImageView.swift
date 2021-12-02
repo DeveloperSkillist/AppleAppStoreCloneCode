@@ -42,11 +42,25 @@ class DownloadableImageView: UIImageView {
         return textView
     }()
     
+    init() {
+        super.init(frame: .zero)
+        [
+            loadingView,
+//            textView
+        ].forEach {
+            self.addSubview($0)
+        }
+        
+        loadingView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         [
             loadingView,
-            textView
+//            textView
         ].forEach {
             self.addSubview($0)
         }
@@ -55,9 +69,9 @@ class DownloadableImageView: UIImageView {
             $0.centerX.centerY.equalToSuperview()
         }
         
-        textView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(10)
-        }
+//        textView.snp.makeConstraints {
+//            $0.edges.equalToSuperview().inset(10)
+//        }
     }
     
     required init?(coder: NSCoder) {

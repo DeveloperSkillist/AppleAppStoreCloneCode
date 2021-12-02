@@ -9,5 +9,5 @@ import Foundation
 
 struct TodayCell {
     let type: TodayCellType
-    let item: Any
+    let items: [Any]
 }

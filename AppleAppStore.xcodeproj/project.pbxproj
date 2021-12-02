@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3655DBEB2758932900597095 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBEA2758932900597095 /* GameViewController.swift */; };
+		3655DBED275894A400597095 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBEC275894A400597095 /* GameNavigationController.swift */; };
+		3655DBF12758B61C00597095 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF02758B61C00597095 /* ListItem.swift */; };
+		3655DBF32758D31000597095 /* TodayListItemsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF22758D31000597095 /* TodayListItemsCollectionHeaderView.swift */; };
+		3655DBF52758DBB900597095 /* TodayListItemsBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF42758DBB900597095 /* TodayListItemsBackgroundView.swift */; };
 		3659323C2757845F00E08E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323B2757845F00E08E8F /* AppDelegate.swift */; };
 		3659323E2757845F00E08E8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323D2757845F00E08E8F /* SceneDelegate.swift */; };
 		365932402757845F00E08E8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323F2757845F00E08E8F /* ViewController.swift */; };
@@ -24,9 +29,17 @@
 		365932712757991200E08E8F /* AccountProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932702757991200E08E8F /* AccountProfileView.swift */; };
 		3659327327579CD900E08E8F /* TodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659327227579CD900E08E8F /* TodayCell.swift */; };
 		3659327527579D0F00E08E8F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659327427579D0F00E08E8F /* Enums.swift */; };
+		365932772757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932762757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift */; };
+		365932792757AB2F00E08E8F /* TodayListItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932782757AB2F00E08E8F /* TodayListItemsCollectionViewCell.swift */; };
+		3659327C2757ADAE00E08E8F /* LargeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659327B2757ADAE00E08E8F /* LargeItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3655DBEA2758932900597095 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		3655DBEC275894A400597095 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
+		3655DBF02758B61C00597095 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
+		3655DBF22758D31000597095 /* TodayListItemsCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayListItemsCollectionHeaderView.swift; sourceTree = "<group>"; };
+		3655DBF42758DBB900597095 /* TodayListItemsBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayListItemsBackgroundView.swift; sourceTree = "<group>"; };
 		365932382757845F00E08E8F /* AppleAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3659323B2757845F00E08E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3659323D2757845F00E08E8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +60,9 @@
 		365932702757991200E08E8F /* AccountProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProfileView.swift; sourceTree = "<group>"; };
 		3659327227579CD900E08E8F /* TodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCell.swift; sourceTree = "<group>"; };
 		3659327427579D0F00E08E8F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		365932762757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLargeItemInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		365932782757AB2F00E08E8F /* TodayListItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayListItemsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3659327B2757ADAE00E08E8F /* LargeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3655DBE9275892FA00597095 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				3655DBEC275894A400597095 /* GameNavigationController.swift */,
+				3655DBEA2758932900597095 /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		3659322F2757845F00E08E8F = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +143,7 @@
 			children = (
 				3659324F2757893400E08E8F /* RootTabBarViewController.swift */,
 				3659325F27578F8700E08E8F /* Today */,
+				3655DBE9275892FA00597095 /* Game */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -142,6 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				365932622757941100E08E8F /* TodayAccountCollectionViewCell.swift */,
+				365932762757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift */,
+				365932782757AB2F00E08E8F /* TodayListItemsCollectionViewCell.swift */,
+				3655DBF22758D31000597095 /* TodayListItemsCollectionHeaderView.swift */,
+				3655DBF42758DBB900597095 /* TodayListItemsBackgroundView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -149,7 +179,7 @@
 		365932642757943900E08E8F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3659327227579CD900E08E8F /* TodayCell.swift */,
+				3659327A2757ABD300E08E8F /* Today */,
 				3659327427579D0F00E08E8F /* Enums.swift */,
 			);
 			path = Model;
@@ -171,6 +201,16 @@
 				3659326E275798AE00E08E8F /* APIKey.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		3659327A2757ABD300E08E8F /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				3659327227579CD900E08E8F /* TodayCell.swift */,
+				3659327B2757ADAE00E08E8F /* LargeItem.swift */,
+				3655DBF02758B61C00597095 /* ListItem.swift */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,19 +291,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3655DBF52758DBB900597095 /* TodayListItemsBackgroundView.swift in Sources */,
 				3659326A2757968500E08E8F /* DownloadableImageView.swift in Sources */,
+				365932772757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift in Sources */,
 				365932402757845F00E08E8F /* ViewController.swift in Sources */,
 				365932502757893400E08E8F /* RootTabBarViewController.swift in Sources */,
+				3659327C2757ADAE00E08E8F /* LargeItem.swift in Sources */,
 				3659326D2757982400E08E8F /* ImageCache.swift in Sources */,
+				3655DBF32758D31000597095 /* TodayListItemsCollectionHeaderView.swift in Sources */,
+				3655DBEB2758932900597095 /* GameViewController.swift in Sources */,
+				3655DBED275894A400597095 /* GameNavigationController.swift in Sources */,
 				3659326F275798AE00E08E8F /* APIKey.swift in Sources */,
 				365932712757991200E08E8F /* AccountProfileView.swift in Sources */,
 				365932632757941100E08E8F /* TodayAccountCollectionViewCell.swift in Sources */,
 				3659327527579D0F00E08E8F /* Enums.swift in Sources */,
+				365932792757AB2F00E08E8F /* TodayListItemsCollectionViewCell.swift in Sources */,
 				3659325227578C5D00E08E8F /* TodayCollectionViewController.swift in Sources */,
 				3659323C2757845F00E08E8F /* AppDelegate.swift in Sources */,
 				3659327327579CD900E08E8F /* TodayCell.swift in Sources */,
 				3659325B27578D3B00E08E8F /* String+Extension.swift in Sources */,
 				3659323E2757845F00E08E8F /* SceneDelegate.swift in Sources */,
+				3655DBF12758B61C00597095 /* ListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

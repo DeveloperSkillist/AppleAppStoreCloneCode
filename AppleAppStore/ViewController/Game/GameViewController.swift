@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
         
         let accountProfileView = AccountProfileView()
         accountProfileView.clipsToBounds = true
-        accountProfileView.backgroundColor = .white
+        accountProfileView.backgroundColor = .systemBackground
         accountProfileView.layer.cornerRadius = 15
         navigationController?.navigationBar.addSubview(accountProfileView)
         accountProfileView.snp.makeConstraints {

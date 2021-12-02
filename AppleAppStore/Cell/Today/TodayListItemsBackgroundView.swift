@@ -11,7 +11,7 @@ class TodayListItemsBackgroundView: UICollectionReusableView {
     
     private lazy var backgroundView: UIView = {
         var view = UIView()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "white,darkgray")
         return view
     }()
     

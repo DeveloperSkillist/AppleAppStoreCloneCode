@@ -36,7 +36,7 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: DownloadableImageView = {
         let imageView = DownloadableImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .systemBackground
+        imageView.backgroundColor = UIColor(named: "white,darkgray")
         imageView.layer.cornerRadius = 15
         imageView.clipsToBounds = true
         return imageView

@@ -12,7 +12,7 @@ class AccountProfileView: UIView {
     private lazy var profileView: DownloadableImageView = {
         let imageView = DownloadableImageView(frame: .zero)
         imageView.backgroundColor = .label
-        imageView.image = UIImage(named: "AppIcon")
+        imageView.image = UIImage(named: "orange_skillist")
         return imageView
     }()
     

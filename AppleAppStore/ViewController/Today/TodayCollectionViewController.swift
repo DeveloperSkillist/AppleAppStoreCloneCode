@@ -60,14 +60,13 @@ extension TodayCollectionViewController {
             
             TodayCell(type: .LargeItemInfo, items: [
                 LargeItem(
-                    subText: "이렇게 하세요.",
-                    mainText: "클론코딩으로 실력을 키우자.",
-                    bottomText: "아주 좋은 방법!",
+                    subText: "함께하는 프로젝트!",
+                    mainText: "Skillist의\n속업오버로드~",
+                    bottomText: "우리 같이 공부해요.",
                     subTitleColor: .darkGray,
-                    mainTitleColor: .white,
                     bottomTitlecolor: .darkGray,
                     imageURL: nil,
-                    image: UIImage(named: "black_skillist")
+                    image: UIImage(named: "orange_skillist")
                 )
             ]),
             
@@ -80,13 +79,14 @@ extension TodayCollectionViewController {
             
             TodayCell(type: .LargeItemInfo, items: [
                 LargeItem(
-                    subText: "함께하는 프로젝트!",
-                    mainText: "Skillist의\n속업오버로드~",
-                    bottomText: "우리 같이 공부해요.",
+                    subText: "이렇게 하세요.",
+                    mainText: "클론코딩으로 실력을 키우자.",
+                    bottomText: "아주 좋은 방법!",
                     subTitleColor: .darkGray,
+                    mainTitleColor: .white,
                     bottomTitlecolor: .darkGray,
                     imageURL: nil,
-                    image: UIImage(named: "orange_skillist")
+                    image: UIImage(named: "black_skillist")
                 )
             ])
         ]

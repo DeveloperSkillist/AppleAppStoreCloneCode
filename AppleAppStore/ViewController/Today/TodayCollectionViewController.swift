@@ -56,38 +56,39 @@ extension TodayCollectionViewController {
     
     private func setList() {
         items = [
-                TodayCell(type: .AccountProfile, items: ["ASD"]),
-                TodayCell(type: .LargeItemInfo, items: [
-                    LargeItem(
-                        subText: "함께하는 프로젝트!",
-                        mainText: "Skillist의\n속업오버로드~",
-                        bottomText: "우리 같이 공부해요.",
-                        subTitleColor: .darkGray,
-                        bottomTitlecolor: .darkGray,
-                        imageURL: nil,
-                        image: UIImage(named: "AppIcon")
-                    )
-                ]),
-                
-                TodayCell(type: .ListItems, items: [
-                  ListItem(mainText: "대피소 지도", subText: "주변의 대피소 위치를 확인하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
-                  ListItem(mainText: "GestureBar", subText: "Android에서 gesture를 사용하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "AppIcon")),
-                  ListItem(mainText: "검정 skillist", subText: "은근 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
-                  ListItem(mainText: "주황 skillist", subText: "은근 힘들어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "AppIcon"))
-                ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
-                
-                TodayCell(type: .LargeItemInfo, items: [
-                    LargeItem(
-                        subText: "이렇게 하세요.",
-                        mainText: "클론코딩으로 실력을 키우자.",
-                        bottomText: "아주 좋은 방법!",
-                        subTitleColor: .darkGray,
-                        mainTitleColor: .white,
-                        bottomTitlecolor: .darkGray,
-                        imageURL: nil,
-                        image: UIImage(named: "black_skillist")
-                    )
-                ])
+            TodayCell(type: .AccountProfile, items: ["ASD"]),
+            
+            TodayCell(type: .LargeItemInfo, items: [
+                LargeItem(
+                    subText: "이렇게 하세요.",
+                    mainText: "클론코딩으로 실력을 키우자.",
+                    bottomText: "아주 좋은 방법!",
+                    subTitleColor: .darkGray,
+                    mainTitleColor: .white,
+                    bottomTitlecolor: .darkGray,
+                    imageURL: nil,
+                    image: UIImage(named: "black_skillist")
+                )
+            ]),
+            
+            TodayCell(type: .ListItems, items: [
+                ListItem(mainText: "대피소 지도", subText: "주변의 대피소 위치를 확인하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
+                ListItem(mainText: "GestureBar", subText: "Android에서 gesture를 사용하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist")),
+                ListItem(mainText: "검정 skillist", subText: "은근 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
+                ListItem(mainText: "주황 skillist", subText: "은근 힘들어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist"))
+            ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
+            
+            TodayCell(type: .LargeItemInfo, items: [
+                LargeItem(
+                    subText: "함께하는 프로젝트!",
+                    mainText: "Skillist의\n속업오버로드~",
+                    bottomText: "우리 같이 공부해요.",
+                    subTitleColor: .darkGray,
+                    bottomTitlecolor: .darkGray,
+                    imageURL: nil,
+                    image: UIImage(named: "orange_skillist")
+                )
+            ])
         ]
     }
 }

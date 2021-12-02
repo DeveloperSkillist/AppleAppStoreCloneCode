@@ -11,7 +11,7 @@ import SnapKit
 class TodayListItemsCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: DownloadableImageView = {
         var imageView = DownloadableImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 10
         imageView.backgroundColor = .label
         imageView.clipsToBounds = true

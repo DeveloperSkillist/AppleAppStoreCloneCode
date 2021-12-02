@@ -12,6 +12,7 @@
 		3655DBF12758B61C00597095 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF02758B61C00597095 /* ListItem.swift */; };
 		3655DBF32758D31000597095 /* TodayListItemsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF22758D31000597095 /* TodayListItemsCollectionHeaderView.swift */; };
 		3655DBF52758DBB900597095 /* TodayListItemsBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF42758DBB900597095 /* TodayListItemsBackgroundView.swift */; };
+		3655DBF727590C4500597095 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3655DBF627590C4500597095 /* Colors.xcassets */; };
 		3659323C2757845F00E08E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323B2757845F00E08E8F /* AppDelegate.swift */; };
 		3659323E2757845F00E08E8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323D2757845F00E08E8F /* SceneDelegate.swift */; };
 		365932402757845F00E08E8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659323F2757845F00E08E8F /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		3655DBF02758B61C00597095 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		3655DBF22758D31000597095 /* TodayListItemsCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayListItemsCollectionHeaderView.swift; sourceTree = "<group>"; };
 		3655DBF42758DBB900597095 /* TodayListItemsBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayListItemsBackgroundView.swift; sourceTree = "<group>"; };
+		3655DBF627590C4500597095 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		365932382757845F00E08E8F /* AppleAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3659323B2757845F00E08E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3659323D2757845F00E08E8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				3659325727578D1600E08E8F /* Localizable.strings */,
 				3659323F2757845F00E08E8F /* ViewController.swift */,
 				365932442757846300E08E8F /* Assets.xcassets */,
+				3655DBF627590C4500597095 /* Colors.xcassets */,
 				365932462757846300E08E8F /* LaunchScreen.storyboard */,
 				365932492757846300E08E8F /* Info.plist */,
 			);
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				365932482757846300E08E8F /* LaunchScreen.storyboard in Resources */,
+				3655DBF727590C4500597095 /* Colors.xcassets in Resources */,
 				3659325527578D1600E08E8F /* Localizable.strings in Resources */,
 				365932452757846300E08E8F /* Assets.xcassets in Resources */,
 			);

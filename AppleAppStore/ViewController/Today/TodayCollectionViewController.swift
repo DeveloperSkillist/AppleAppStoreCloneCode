@@ -9,7 +9,7 @@ import UIKit
 
 class TodayCollectionViewController: UICollectionViewController {
 
-    let background = "background-element-kind"
+    let todayListItemSectionBackground = "TodayListItemSectionBackground"
     
     private lazy var statusBar: UIView = {
         var view = UIView()
@@ -19,53 +19,20 @@ class TodayCollectionViewController: UICollectionViewController {
     }()
     
     let margin: CGFloat = 16
-    var items: [TodayCell] = [
-        TodayCell(type: .AccountProfile, items: ["ASD"]),
-        TodayCell(type: .ListItems, items: [
-          ListItem(mainText: "테스트용\ndsf", subText: "아 힘들다", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: nil),
-          ListItem(mainText: "테스트용", subText: "아 힘들다", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: nil),
-          ListItem(mainText: "테스트용", subText: "아 힘들다", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: nil),
-          ListItem(mainText: "테스트용", subText: "아 힘들다", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: nil)
-        ]),
-        TodayCell(type: .LargeItemInfo, items: [
-            LargeItem(
-                subText: "이렇게 하세요",
-                mainText: "구직도 전략이다",
-                bottomText: "전문가에게 듣는 이력서 작성 꿀팁.",
-                subTitleColor: .darkGray,
-                bottomTitlecolor: .darkGray,
-                imageURL: nil,
-                image: nil
-            )
-        ]),
-        TodayCell(type: .LargeItemInfo, items: [
-            LargeItem(
-                subText: "이렇게 하세요",
-                mainText: "구직도 전략이다",
-                bottomText: "전문가에게 듣는 이력서 작성 꿀팁.",
-                subTitleColor: .darkGray,
-                bottomTitlecolor: .darkGray,
-                imageURL: nil,
-                image: nil
-            )
-        ])
-    ]
+    var items: [TodayCell] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupCollectionView()
         setupLayout()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        setList()
     }
 }
 
 extension TodayCollectionViewController {
     private func setupCollectionView() {
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         
         collectionView.register(TodayAccountCollectionViewCell.self, forCellWithReuseIdentifier: "TodayAccountCollectionViewCell")
@@ -74,7 +41,7 @@ extension TodayCollectionViewController {
         
         collectionView.register(TodayListItemsCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodayListItemsCollectionHeaderView")
         collectionView.collectionViewLayout = layout()
-        collectionView.collectionViewLayout.register(TodayListItemsBackgroundView.self, forDecorationViewOfKind: background)
+        collectionView.collectionViewLayout.register(TodayListItemsBackgroundView.self, forDecorationViewOfKind: todayListItemSectionBackground)
     }
     
     private func setupLayout() {
@@ -86,12 +53,47 @@ extension TodayCollectionViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
     }
+    
+    private func setList() {
+        items = [
+                TodayCell(type: .AccountProfile, items: ["ASD"]),
+                TodayCell(type: .LargeItemInfo, items: [
+                    LargeItem(
+                        subText: "함께하는 프로젝트!",
+                        mainText: "Skillist의\n속업오버로드~",
+                        bottomText: "우리 같이 공부해요.",
+                        subTitleColor: .darkGray,
+                        bottomTitlecolor: .darkGray,
+                        imageURL: nil,
+                        image: UIImage(named: "AppIcon")
+                    )
+                ]),
+                
+                TodayCell(type: .ListItems, items: [
+                  ListItem(mainText: "대피소 지도", subText: "주변의 대피소 위치를 확인하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
+                  ListItem(mainText: "GestureBar", subText: "Android에서 gesture를 사용하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "AppIcon")),
+                  ListItem(mainText: "검정 skillist", subText: "은근 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
+                  ListItem(mainText: "주황 skillist", subText: "은근 힘들어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "AppIcon"))
+                ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
+                
+                TodayCell(type: .LargeItemInfo, items: [
+                    LargeItem(
+                        subText: "이렇게 하세요.",
+                        mainText: "클론코딩으로 실력을 키우자.",
+                        bottomText: "아주 좋은 방법!",
+                        subTitleColor: .darkGray,
+                        mainTitleColor: .white,
+                        bottomTitlecolor: .darkGray,
+                        imageURL: nil,
+                        image: UIImage(named: "black_skillist")
+                    )
+                ])
+        ]
+    }
 }
 
 extension TodayCollectionViewController {
     private func layout() -> UICollectionViewLayout {
-        
-
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
             switch self?.items[section].type {
             case .AccountProfile:
@@ -157,7 +159,7 @@ extension TodayCollectionViewController {
         section.boundarySupplementaryItems = [sectionHeader]
         
         let sectionBackground = NSCollectionLayoutDecorationItem.background(
-            elementKind: background)
+            elementKind: todayListItemSectionBackground)
         section.decorationItems = [sectionBackground]
         
         return section
@@ -220,8 +222,8 @@ extension TodayCollectionViewController {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodayListItemsCollectionHeaderView", for: indexPath) as? TodayListItemsCollectionHeaderView else {
                 return UICollectionReusableView()
             }
-            //TODO
-            headerView.setup(mainText: "구직도 전략이다", subText: "이렇게 하세요")
+            let item = items[indexPath.section]
+            headerView.setup(mainText: item.mainText, subText: item.subText)
             return headerView
         }
         return UICollectionReusableView()
@@ -233,7 +235,7 @@ extension TodayCollectionViewController {
         if isStatusBarHidden {
             statusBar.backgroundColor = .clear
         } else {
-            statusBar.backgroundColor = .darkGray
+            statusBar.backgroundColor = .systemBackground
         }
         
         statusBar.isHidden = isStatusBarHidden

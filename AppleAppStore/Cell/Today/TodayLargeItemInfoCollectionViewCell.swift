@@ -13,6 +13,7 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 20)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -20,6 +21,7 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .semibold)
         label.numberOfLines = 0
+        label.textColor = .label
         return label
     }()
     
@@ -27,13 +29,16 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
         label.numberOfLines = 0
+        label.textColor = .darkGray
         return label
     }()
     
     private lazy var imageView: DownloadableImageView = {
         let imageView = DownloadableImageView(frame: .zero)
         imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .systemBackground
+        imageView.layer.cornerRadius = 15
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -76,8 +81,11 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(20)
         }
         
-        self.layer.cornerRadius = 15
-        self.clipsToBounds = true
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOffset = .zero
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowRadius = 10
+        self.layer.masksToBounds = false
     }
     
     func setup(largeItem: LargeItem) {
@@ -88,7 +96,17 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
         }
         
         subTitle.text = largeItem.subText
+        subTitle.textColor = largeItem.subTitleColor
         mainTitle.text = largeItem.mainText
+        mainTitle.textColor = largeItem.mainTitleColor
         bottomTitle.text = largeItem.bottomText
+        bottomTitle.textColor = largeItem.bottomTitlecolor
+    }
+    
+    override func prepareForReuse() {
+        imageView.image = nil
+        subTitle.text = ""
+        mainTitle.text = ""
+        bottomTitle.text = ""
     }
 }

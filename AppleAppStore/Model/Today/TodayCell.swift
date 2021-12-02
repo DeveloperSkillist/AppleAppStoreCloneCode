@@ -10,4 +10,6 @@ import Foundation
 struct TodayCell {
     let type: TodayCellType
     let items: [Any]
+    var subText: String?
+    var mainText: String?
 }

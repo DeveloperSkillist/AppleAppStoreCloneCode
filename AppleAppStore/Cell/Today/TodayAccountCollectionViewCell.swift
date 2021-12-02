@@ -18,7 +18,7 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
     
     private lazy var largeTitle: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .label
         label.font = .systemFont(ofSize: 34, weight: .bold)
         return label
     }()
@@ -69,7 +69,7 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
     var getCurrentDate: String {
         let dataFormatter = DateFormatter()
         dataFormatter.dateFormat = "MM. dd. E"
-        dataFormatter.locale = Locale(identifier: "ko")
+        dataFormatter.locale = Locale(identifier: Locale.current.identifier)
         return dataFormatter.string(from: Date())
     }
 }

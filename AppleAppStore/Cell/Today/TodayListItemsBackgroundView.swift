@@ -11,7 +11,7 @@ class TodayListItemsBackgroundView: UICollectionReusableView {
     
     private lazy var backgroundView: UIView = {
         var view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemBackground
         return view
     }()
     
@@ -33,7 +33,12 @@ class TodayListItemsBackgroundView: UICollectionReusableView {
                 .inset(16)
         }
         backgroundView.layer.cornerRadius = 15
-//        backgroundView.layer.maskedCorners = [CACornerMask.layerMinXMaxYCorner, CACornerMask.layerMaxXMaxYCorner]
         backgroundView.clipsToBounds = true
+        
+        backgroundView.layer.shadowColor = UIColor.black.cgColor
+        backgroundView.layer.shadowOffset = .zero
+        backgroundView.layer.shadowOpacity = 0.5
+        backgroundView.layer.shadowRadius = 10
+        backgroundView.layer.masksToBounds = false
     }
 }

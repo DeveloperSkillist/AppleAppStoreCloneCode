@@ -18,7 +18,7 @@ class TodayListItemsCollectionHeaderView: UICollectionReusableView {
     
     private lazy var mainText: UILabel = {
         var label = UILabel()
-        label.textColor = .white
+        label.textColor = .label
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.numberOfLines = 2
         return label
@@ -59,7 +59,7 @@ class TodayListItemsCollectionHeaderView: UICollectionReusableView {
         }
     }
     
-    func setup(mainText: String, subText: String) {
+    func setup(mainText: String?, subText: String?) {
         self.mainText.text = mainText
         self.subText.text = subText
     }

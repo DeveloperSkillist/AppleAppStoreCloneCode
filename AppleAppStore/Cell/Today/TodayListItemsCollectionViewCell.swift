@@ -13,13 +13,14 @@ class TodayListItemsCollectionViewCell: UICollectionViewCell {
         var imageView = DownloadableImageView()
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .label
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     private lazy var mainText: UILabel = {
         var label = UILabel()
-        label.textColor = .white
+        label.textColor = .label
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 2
         return label
@@ -36,7 +37,7 @@ class TodayListItemsCollectionViewCell: UICollectionViewCell {
         var button = UIButton()
         button.setTitle("down_title".localized, for: .normal)
         button.setTitleColor(.link, for: .normal)
-        button.backgroundColor = .darkGray
+        button.backgroundColor = UIColor(named: "lightgray,darkgray")
         button.layer.cornerRadius = 15
         return button
     }()
@@ -103,15 +104,17 @@ class TodayListItemsCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(mainText.snp.bottom).offset(5)
             $0.leading.trailing.equalTo(mainText)
         }
-        
-//        mainText.text = "12312315adsczxc"
-//        subText.text = "12312315adsczxc"
-//        inAppPurchaseText.text = "in_app_purchase".localized
     }
     
     func setup(item: ListItem) {
         mainText.text = item.mainText
         subText.text = item.subText
         inAppPurchaseText.text = "in_app_purchase".localized
+        
+        if let url = item.imageURL {
+            imageView.downloadImage(url: url)
+        } else if let image = item.image {
+            imageView.image = image
+        }
     }
 }

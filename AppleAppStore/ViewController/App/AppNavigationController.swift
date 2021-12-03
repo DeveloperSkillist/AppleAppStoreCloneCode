@@ -1,5 +1,5 @@
 //
-//  GameNavigationController.swift
+//  AppNavigationController.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameNavigationController: UINavigationController {
+class AppNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

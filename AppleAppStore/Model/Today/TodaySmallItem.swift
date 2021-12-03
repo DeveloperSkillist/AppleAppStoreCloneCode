@@ -1,14 +1,13 @@
 //
-//  ListItem.swift
+//  TodaySmallItem.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/02.
 //
 
-import Foundation
 import UIKit
 
-struct ListItem {
+struct TodaySmallItem {
     let mainText: String
     let subText: String
     let isInAppPurchase: Bool

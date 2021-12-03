@@ -1,5 +1,5 @@
 //
-//  TodayLargeItemInfoCollectionViewCell.swift
+//  TodayLargeItemCollectionViewCell.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/01.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
+class TodayLargeItemCollectionViewCell: UICollectionViewCell {
     private lazy var subTitle: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -88,7 +88,7 @@ class TodayLargeItemInfoCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = false
     }
     
-    func setup(largeItem: LargeItem) {
+    func setup(largeItem: TodayLargeItem) {
         if let imageUrl = largeItem.imageURL {
             imageView.downloadImage(url: imageUrl)
         } else if let image = largeItem.image {

@@ -9,7 +9,7 @@ import UIKit
 
 class TodayCollectionViewController: UICollectionViewController {
 
-    let todayListItemSectionBackground = "TodayListItemSectionBackground"
+    let todaySmallItemSectionBackground = "TodaySmallItemSectionBackground"
     
     private lazy var statusBar: UIView = {
         var view = UIView()
@@ -19,7 +19,7 @@ class TodayCollectionViewController: UICollectionViewController {
     }()
     
     let margin: CGFloat = 16
-    var items: [TodayCell] = []
+    var items: [TodayItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +33,15 @@ class TodayCollectionViewController: UICollectionViewController {
 extension TodayCollectionViewController {
     private func setupCollectionView() {
         collectionView.backgroundColor = .systemBackground
-        collectionView.delegate = self
+//        collectionView.delegate = self
         
         collectionView.register(TodayAccountCollectionViewCell.self, forCellWithReuseIdentifier: "TodayAccountCollectionViewCell")
-        collectionView.register(TodayLargeItemInfoCollectionViewCell.self, forCellWithReuseIdentifier: "TodayLargeItemInfoCollectionViewCell")
-        collectionView.register(TodayListItemsCollectionViewCell.self, forCellWithReuseIdentifier: "TodayListItemsCollectionViewCell")
+        collectionView.register(TodayLargeItemCollectionViewCell.self, forCellWithReuseIdentifier: "TodayLargeItemCollectionViewCell")
+        collectionView.register(TodaySmallItemCollectionViewCell.self, forCellWithReuseIdentifier: "TodaySmallItemCollectionViewCell")
         
-        collectionView.register(TodayListItemsCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodayListItemsCollectionHeaderView")
+        collectionView.register(TodaySmallItemCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodaySmallItemCollectionViewCell")
         collectionView.collectionViewLayout = layout()
-        collectionView.collectionViewLayout.register(TodayListItemsBackgroundView.self, forDecorationViewOfKind: todayListItemSectionBackground)
+        collectionView.collectionViewLayout.register(TodaySmallItemBackgroundView.self, forDecorationViewOfKind: todaySmallItemSectionBackground)
     }
     
     private func setupLayout() {
@@ -56,10 +56,10 @@ extension TodayCollectionViewController {
     
     private func setList() {
         items = [
-            TodayCell(type: .AccountProfile, items: ["ASD"]),
+            TodayItem(type: .AccountProfile, items: ["myAccount"]),
             
-            TodayCell(type: .LargeItemInfo, items: [
-                LargeItem(
+            TodayItem(type: .LargeItem, items: [
+                TodayLargeItem(
                     subText: "함께하는 프로젝트!",
                     mainText: "Skillist의\n속업오버로드~",
                     bottomText: "우리 같이 공부해요.",
@@ -70,23 +70,23 @@ extension TodayCollectionViewController {
                 )
             ]),
             
-            TodayCell(type: .ListItems, items: [
-                ListItem(mainText: "대피소 지도", subText: "주변의 대피소 위치를 확인하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
-                ListItem(mainText: "GestureBar", subText: "Android에서 gesture를 사용하세요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist")),
-                ListItem(mainText: "검정 skillist", subText: "은근 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
-                ListItem(mainText: "주황 skillist", subText: "은근 힘들어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist"))
+            TodayItem(type: .SmallItem, items: [
+                TodaySmallItem(mainText: "검정 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
+                TodaySmallItem(mainText: "핑크 skillist", subText: "코딩량이 많아요", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "pink_skillist")),
+                TodaySmallItem(mainText: "블루 skillist", subText: "그래도 재밌어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "blue_skillist")),
+                TodaySmallItem(mainText: "그레이 skillist", subText: "완전 재밌어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist"))
             ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
             
-            TodayCell(type: .LargeItemInfo, items: [
-                LargeItem(
+            TodayItem(type: .LargeItem, items: [
+                TodayLargeItem(
                     subText: "이렇게 하세요.",
                     mainText: "클론코딩으로 실력을 키우자.",
                     bottomText: "아주 좋은 방법!",
-                    subTitleColor: .darkGray,
+                    subTitleColor: .white,
                     mainTitleColor: .white,
-                    bottomTitlecolor: .darkGray,
+                    bottomTitlecolor: .white,
                     imageURL: nil,
-                    image: UIImage(named: "black_skillist")
+                    image: UIImage(named: "purple_skillist")
                 )
             ])
         ]
@@ -99,10 +99,10 @@ extension TodayCollectionViewController {
             switch self?.items[section].type {
             case .AccountProfile:
                 return self?.createAccountSection()
-            case .LargeItemInfo:
-                return self?.createLargeItemInfoSection()
-            case .ListItems:
-                return self?.createListItemInfoSection()
+            case .LargeItem:
+                return self?.createLargeItemSection()
+            case .SmallItem:
+                return self?.createSmallItemSection()
             default:
                 return nil
             }
@@ -125,7 +125,7 @@ extension TodayCollectionViewController {
         return section
     }
     
-    private func createLargeItemInfoSection() -> NSCollectionLayoutSection {
+    private func createLargeItemSection() -> NSCollectionLayoutSection {
         //아이템
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -142,7 +142,7 @@ extension TodayCollectionViewController {
         return section
     }
     
-    private func createListItemInfoSection() -> NSCollectionLayoutSection {
+    private func createSmallItemSection() -> NSCollectionLayoutSection {
         //아이템
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -160,7 +160,7 @@ extension TodayCollectionViewController {
         section.boundarySupplementaryItems = [sectionHeader]
         
         let sectionBackground = NSCollectionLayoutDecorationItem.background(
-            elementKind: todayListItemSectionBackground)
+            elementKind: todaySmallItemSectionBackground)
         section.decorationItems = [sectionBackground]
         
         return section
@@ -194,33 +194,33 @@ extension TodayCollectionViewController {
             }
             return cell
             
-        case .LargeItemInfo:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayLargeItemInfoCollectionViewCell", for: indexPath) as? TodayLargeItemInfoCollectionViewCell else {
+        case .LargeItem:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayLargeItemCollectionViewCell", for: indexPath) as? TodayLargeItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
-            guard let largeItem = items[indexPath.section].items[indexPath.row] as? LargeItem else {
+            guard let largeItem = items[indexPath.section].items[indexPath.row] as? TodayLargeItem else {
                 return UICollectionViewCell()
             }
             cell.setup(largeItem: largeItem)
             return cell
             
-        case .ListItems:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayListItemsCollectionViewCell", for: indexPath) as? TodayListItemsCollectionViewCell else {
+        case .SmallItem:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodaySmallItemCollectionViewCell", for: indexPath) as? TodaySmallItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
             
-            guard let listItem = items[indexPath.section].items[indexPath.row] as? ListItem else {
+            guard let smallItem = items[indexPath.section].items[indexPath.row] as? TodaySmallItem else {
                 return UICollectionViewCell()
             }
-            cell.setup(item: listItem)
+            cell.setup(item: smallItem)
             return cell
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodayListItemsCollectionHeaderView", for: indexPath) as? TodayListItemsCollectionHeaderView else {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodaySmallItemCollectionViewCell", for: indexPath) as? TodaySmallItemCollectionHeaderView else {
                 return UICollectionReusableView()
             }
             let item = items[indexPath.section]

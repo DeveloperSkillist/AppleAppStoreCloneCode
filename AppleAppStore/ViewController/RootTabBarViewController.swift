@@ -31,13 +31,13 @@ class RootTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "doc.richtext.fill")
         )
         
-        let gameViewController = GameNavigationController(rootViewController: GameViewController())
-        gameViewController.tabBarItem = UITabBarItem(
-            title: "game_title".localized,
+        let appViewController = AppNavigationController(rootViewController: AppViewController())
+        appViewController.tabBarItem = UITabBarItem(
+            title: "app_title".localized,
             image: UIImage(systemName: "gamecontroller"),
             selectedImage: UIImage(systemName: "gamecontroller.fill")
         )
         
-        viewControllers = [todayViewController, gameViewController]
+        viewControllers = [todayViewController, appViewController]
     }
 }

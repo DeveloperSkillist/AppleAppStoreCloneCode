@@ -1,5 +1,5 @@
 //
-//  TodayListItemsCollectionHeaderView.swift
+//  TodaySmallItemCollectionViewCell.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayListItemsCollectionHeaderView: UICollectionReusableView {
+class TodaySmallItemCollectionHeaderView: UICollectionReusableView {
     
     private lazy var subText: UILabel = {
         var label = UILabel()

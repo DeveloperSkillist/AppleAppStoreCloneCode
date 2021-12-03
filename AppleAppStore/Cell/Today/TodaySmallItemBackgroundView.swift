@@ -1,5 +1,5 @@
 //
-//  TodayListItemsBackgroundView.swift
+//  TodaySmallItemBackgroundView.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/02.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodayListItemsBackgroundView: UICollectionReusableView {
+class TodaySmallItemBackgroundView: UICollectionReusableView {
     
     private lazy var backgroundView: UIView = {
         var view = UIView()

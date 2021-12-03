@@ -1,5 +1,5 @@
 //
-//  TodayCellType.swift
+//  TodayItem.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/01.
@@ -7,9 +7,15 @@
 
 import Foundation
 
-struct TodayCell {
-    let type: TodayCellType
+struct TodayItem {
+    let type: TodayItemType
     let items: [Any]
     var subText: String?
     var mainText: String?
+}
+
+enum TodayItemType: Int {
+    case AccountProfile
+    case LargeItem
+    case SmallItem
 }

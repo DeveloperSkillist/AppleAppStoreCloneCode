@@ -1,17 +1,17 @@
 //
-//  TodayListItemsCollectionViewCell.swift
+//  AppSmallItemCollectionViewCell.swift
 //  AppleAppStore
 //
-//  Created by skillist on 2021/12/01.
+//  Created by skillist on 2021/12/03.
 //
 
 import UIKit
 import SnapKit
 
-class TodayListItemsCollectionViewCell: UICollectionViewCell {
+class AppSmallItemsCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: DownloadableImageView = {
         var imageView = DownloadableImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
         imageView.backgroundColor = .label
         imageView.clipsToBounds = true
@@ -106,7 +106,7 @@ class TodayListItemsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setup(item: ListItem) {
+    func setup(item: TodaySmallItem) {
         mainText.text = item.mainText
         subText.text = item.subText
         inAppPurchaseText.text = "in_app_purchase".localized

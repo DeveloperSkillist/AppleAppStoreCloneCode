@@ -66,15 +66,15 @@ extension TodayCollectionViewController {
                     subTitleColor: .darkGray,
                     bottomTitlecolor: .darkGray,
                     imageURL: nil,
-                    image: UIImage(named: "orange_skillist")
+                    image: RandomData.image
                 )
             ]),
             
             TodayItem(type: .SmallItem, items: [
-                TodaySmallItem(mainText: "검정 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "black_skillist")),
-                TodaySmallItem(mainText: "핑크 skillist", subText: "코딩량이 많아요", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "pink_skillist")),
-                TodaySmallItem(mainText: "블루 skillist", subText: "그래도 재밌어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "blue_skillist")),
-                TodaySmallItem(mainText: "그레이 skillist", subText: "완전 재밌어요.", isInAppPurchase: true, isInstalled: false, imageURL: nil, image: UIImage(named: "orange_skillist"))
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "코딩량이 많아요", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "그래도 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "완전 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image)
             ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
             
             TodayItem(type: .LargeItem, items: [
@@ -86,7 +86,7 @@ extension TodayCollectionViewController {
                     mainTitleColor: .white,
                     bottomTitlecolor: .white,
                     imageURL: nil,
-                    image: UIImage(named: "purple_skillist")
+                    image: RandomData.image
                 )
             ])
         ]
@@ -156,7 +156,7 @@ extension TodayCollectionViewController {
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = .init(top: margin, leading: margin, bottom: margin + 30, trailing: margin)
         
-        let sectionHeader = self.createSectionHeader()
+        let sectionHeader = self.createSamllItemSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
         
         let sectionBackground = NSCollectionLayoutDecorationItem.background(
@@ -166,7 +166,7 @@ extension TodayCollectionViewController {
         return section
     }
     
-    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func createSamllItemSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         //section header 사이즈
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
         

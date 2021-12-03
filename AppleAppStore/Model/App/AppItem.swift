@@ -13,6 +13,7 @@ struct AppItem {
     var subText: String?
     var mainText: String?
     var mainInfoText: String?
+    var isAllShowButton: Bool?
 }
 
 enum AppItemType: Int {

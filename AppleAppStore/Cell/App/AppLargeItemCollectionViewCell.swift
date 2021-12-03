@@ -71,7 +71,8 @@ class AppLargeItemCollectionViewCell: UICollectionViewCell {
         
         lineView.snp.makeConstraints {
             $0.top.trailing.equalToSuperview()
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(1)
         }
         
         subTitle.snp.makeConstraints {

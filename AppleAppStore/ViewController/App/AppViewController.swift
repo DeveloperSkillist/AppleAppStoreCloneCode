@@ -35,6 +35,8 @@ class AppViewController: UIViewController {
         collectionView.register(AppLargeItemCollectionViewCell.self, forCellWithReuseIdentifier: "AppLargeItemCollectionViewCell")
         
         collectionView.register(AppSmallItemsCollectionViewCell.self, forCellWithReuseIdentifier: "AppSmallItemsCollectionViewCell")
+        
+        collectionView.register(AppSmallItemCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView")
         return collectionView
     }()
     
@@ -87,13 +89,13 @@ class AppViewController: UIViewController {
                 items: [
                     AppLargeItem(
                         subText: "2021 App Store Awards",
-                        mainText: "App Store Awards",
-                        mainInfoText: "수상작을 소개합니다",
+                        mainText: "Skillist Project",
+                        mainInfoText: "이게 Skillist다",
                         subTextColor: .link,
                         mainTextColor: .white,
                         mainInfoTextColor: .white,
                         imageURL: nil,
-                        image: UIImage(named: "orange_skillist")
+                        image: RandomData.image
                     ),
                     AppLargeItem(
                         subText: "2021 App Store Awards",
@@ -103,7 +105,7 @@ class AppViewController: UIViewController {
                         mainTextColor: .white,
                         mainInfoTextColor: .white,
                         imageURL: nil,
-                        image: UIImage(named: "pink_skillist")
+                        image: RandomData.image
                     ),
                     AppLargeItem(
                         subText: "2021 App Store Awards",
@@ -113,7 +115,179 @@ class AppViewController: UIViewController {
                         mainTextColor: .white,
                         mainInfoTextColor: .white,
                         imageURL: nil,
-                        image: UIImage(named: "blue_skillist")
+                        image: RandomData.image
+                    )
+                ],
+                subText: "",
+                mainText: "",
+                mainInfoText: ""
+            ),
+            AppItem(
+                type: .SmallItem,
+                items: [
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "지금 내 기분은",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "마치 08년도 베이식",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "워~!",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "데리고 와봐",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "네가 랩 잘한다는",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "나는 조광일의 랩을 따라",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    )
+                ],
+                mainText: "08 베이식",
+                isAllShowButton: RandomData.boolean
+            ),
+            AppItem(
+                type: .SmallItem,
+                items: [
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "난 모두가 잘 되길 빌어",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "이 말이 거짓말 같다 해도",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "확실한건 더이상",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "상처를 주기 싫어",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "이제와서 보니 세상이",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "우릴 만들었단 생각이 들어",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "얻은것보다도 잃은게",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "많은것 같어 사실 너도 ",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppSmallItem(
+                        mainText: "랜덤 skillist",
+                        subText: "알잖아",
+                        isInAppPurchase: RandomData.boolean,
+                        isInstalled: RandomData.boolean,
+                        imageURL: nil,
+                        image: RandomData.image
+                    )
+                ],
+                mainText: "내일이 오면",
+                isAllShowButton: RandomData.boolean
+            ),
+            AppItem(
+                type: .LargeItem,
+                items: [
+                    AppLargeItem(
+                        subText: "너와 나의 메모리 - 베이식",
+                        mainText: "2007년의 슈퍼루키",
+                        mainInfoText: "국힙의 미래가 내 대명사",
+                        subTextColor: .link,
+                        mainTextColor: .white,
+                        mainInfoTextColor: .white,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppLargeItem(
+                        subText: "너와 나의 메모리 - 쿤타",
+                        mainText: "좁은 골목길을 들어가면",
+                        mainInfoText: "빛이 반만 드는 창에 우리가보여",
+                        subTextColor: .link,
+                        mainTextColor: .white,
+                        mainInfoTextColor: .white,
+                        imageURL: nil,
+                        image: RandomData.image
+                    ),
+                    AppLargeItem(
+                        subText: "너와 나의 메모리 - 쿤타",
+                        mainText: "감옥같은 방에 빛이 들어오면",
+                        mainInfoText: "막연한 오늘의 희망이 잠깐 보여",
+                        subTextColor: .link,
+                        mainTextColor: .white,
+                        mainInfoTextColor: .white,
+                        imageURL: nil,
+                        image: RandomData.image
                     )
                 ],
                 subText: "",
@@ -126,46 +300,60 @@ class AppViewController: UIViewController {
 
 extension AppViewController {
     private func createLargeItemSection() -> NSCollectionLayoutSection {
-        let itemMargin: CGFloat = 4
         
         //item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        item.contentInsets = .init(top: 0, leading: margin/2, bottom: 0, trailing: margin/2)
+        item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(collectionView.frame.width - (itemMargin * 2)), heightDimension: .estimated(350))
+        let groupMargin: CGFloat = 6
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - ((margin - groupMargin) * 2)), heightDimension: .estimated(350))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-        group.contentInsets = .init(top: 0, leading: itemMargin, bottom: 0, trailing: itemMargin)
+        group.contentInsets = .init(top: 0, leading: groupMargin, bottom: 0, trailing: groupMargin)
         
         //section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .paging
-        section.contentInsets = .init(top: margin, leading: itemMargin*2, bottom: margin, trailing: itemMargin*2)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: margin, leading: margin - groupMargin, bottom: margin, trailing: margin - groupMargin)
         
         return section
     }
     
     private func createSmallItemSection() -> NSCollectionLayoutSection {
+        
         //아이템
+        let itemMargin: CGFloat = 4
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 0, leading: itemMargin, bottom: 0, trailing: itemMargin)
         
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(collectionView.frame.size.width - 32), heightDimension: .estimated(310))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 4)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - ((margin - itemMargin) * 2)), heightDimension: .estimated(250))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         //section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: margin, leading: margin, bottom: margin + 30, trailing: margin)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: margin, leading: margin - itemMargin, bottom: margin, trailing: margin - itemMargin)
         
-        //TODO header
-//        let sectionHeader = self.createSectionHeader()
-//        section.boundarySupplementaryItems = [sectionHeader]
+//        TODO header
+        let sectionHeader = self.createSmallItemSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
         
         return section
     }
+    
+    private func createSmallItemSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        //section header 사이즈
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
+        
+        //section header Layout
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        return sectionHeader
+     }
 }
 
 extension AppViewController: UICollectionViewDelegate {
@@ -200,7 +388,23 @@ extension AppViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppSmallItemsCollectionViewCell", for: indexPath) as? AppSmallItemsCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            guard let item = items[indexPath.section].items[indexPath.row] as? AppSmallItem else {
+                return UICollectionViewCell()
+            }
+            cell.setup(item: item)
             return cell
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView", for: indexPath) as? AppSmallItemCollectionHeaderView else {
+                return UICollectionReusableView()
+            }
+            let item = items[indexPath.section]
+            headerView.setup(mainText: item.mainText)
+            return headerView
+        }
+        return UICollectionReusableView()
     }
 }

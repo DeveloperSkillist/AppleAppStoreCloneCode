@@ -77,12 +77,12 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
         
         imageView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(5)
-            $0.leading.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview()
             $0.width.height.equalTo(70)
         }
         
         button.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.width.equalTo(70)
         }
@@ -106,7 +106,7 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setup(item: TodaySmallItem) {
+    func setup(item: AppSmallItem) {
         mainText.text = item.mainText
         subText.text = item.subText
         inAppPurchaseText.text = "in_app_purchase".localized
@@ -116,5 +116,7 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
         } else if let image = item.image {
             imageView.image = image
         }
+        
+        inAppPurchaseText.isHidden = !item.isInAppPurchase
     }
 }

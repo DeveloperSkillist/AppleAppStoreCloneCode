@@ -13,6 +13,8 @@
 		3603792E2759BD5B002AAAB6 /* AppMediumItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3603792D2759BD5B002AAAB6 /* AppMediumItem.swift */; };
 		360379302759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3603792F2759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift */; };
 		360379322759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360379312759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift */; };
+		36037935275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36037934275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift */; };
+		36037939275A4FFC002AAAB6 /* RandomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36037938275A4FFC002AAAB6 /* RandomData.swift */; };
 		3655DBEB2758932900597095 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBEA2758932900597095 /* AppViewController.swift */; };
 		3655DBED275894A400597095 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBEC275894A400597095 /* AppNavigationController.swift */; };
 		3655DBF12758B61C00597095 /* TodaySmallItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF02758B61C00597095 /* TodaySmallItem.swift */; };
@@ -47,6 +49,8 @@
 		3603792D2759BD5B002AAAB6 /* AppMediumItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMediumItem.swift; sourceTree = "<group>"; };
 		3603792F2759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmallItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		360379312759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLargeItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		36037934275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmallItemCollectionHeaderView.swift; sourceTree = "<group>"; };
+		36037938275A4FFC002AAAB6 /* RandomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomData.swift; sourceTree = "<group>"; };
 		3655DBEA2758932900597095 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		3655DBEC275894A400597095 /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		3655DBF02758B61C00597095 /* TodaySmallItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySmallItem.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 			children = (
 				360379312759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift */,
 				3603792F2759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift */,
+				36037934275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 		360379332759F87A002AAAB6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3655DBF42758DBB900597095 /* TodaySmallItemBackgroundView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -213,7 +219,6 @@
 				365932762757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift */,
 				365932782757AB2F00E08E8F /* TodaySmallItemCollectionViewCell.swift */,
 				3655DBF22758D31000597095 /* TodaySmallItemCollectionHeaderView.swift */,
-				3655DBF42758DBB900597095 /* TodaySmallItemBackgroundView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			children = (
 				3659326C2757982400E08E8F /* ImageCache.swift */,
 				3659326E275798AE00E08E8F /* APIKey.swift */,
+				36037938275A4FFC002AAAB6 /* RandomData.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -355,6 +361,8 @@
 				3603792A2759BD3C002AAAB6 /* AppSmallItem.swift in Sources */,
 				3659323C2757845F00E08E8F /* AppDelegate.swift in Sources */,
 				360379302759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift in Sources */,
+				36037935275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift in Sources */,
+				36037939275A4FFC002AAAB6 /* RandomData.swift in Sources */,
 				3659327327579CD900E08E8F /* TodayItem.swift in Sources */,
 				3659325B27578D3B00E08E8F /* String+Extension.swift in Sources */,
 				360379322759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift in Sources */,

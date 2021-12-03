@@ -117,7 +117,6 @@
 		360379332759F87A002AAAB6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3655DBF42758DBB900597095 /* TodaySmallItemBackgroundView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -219,6 +218,7 @@
 				365932762757AB1F00E08E8F /* TodayLargeItemInfoCollectionViewCell.swift */,
 				365932782757AB2F00E08E8F /* TodaySmallItemCollectionViewCell.swift */,
 				3655DBF22758D31000597095 /* TodaySmallItemCollectionHeaderView.swift */,
+				3655DBF42758DBB900597095 /* TodaySmallItemBackgroundView.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";

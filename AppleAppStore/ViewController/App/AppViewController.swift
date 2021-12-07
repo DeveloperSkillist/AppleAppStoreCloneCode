@@ -92,8 +92,8 @@ class AppViewController: UIViewController {
                         mainText: "Skillist Project",
                         mainInfoText: "이게 Skillist다",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     ),
@@ -102,8 +102,8 @@ class AppViewController: UIViewController {
                         mainText: "Skillist Project",
                         mainInfoText: "이게 스터디다",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     ),
@@ -112,8 +112,8 @@ class AppViewController: UIViewController {
                         mainText: "Skillist Project",
                         mainInfoText: "이것이 클론코딩이다",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     )
@@ -264,8 +264,8 @@ class AppViewController: UIViewController {
                         mainText: "2007년의 슈퍼루키",
                         mainInfoText: "국힙의 미래가 내 대명사",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     ),
@@ -274,8 +274,8 @@ class AppViewController: UIViewController {
                         mainText: "좁은 골목길을 들어가면",
                         mainInfoText: "빛이 반만 드는 창에 우리가보여",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     ),
@@ -284,8 +284,8 @@ class AppViewController: UIViewController {
                         mainText: "감옥같은 방에 빛이 들어오면",
                         mainInfoText: "막연한 오늘의 희망이 잠깐 보여",
                         subTextColor: .link,
-                        mainTextColor: .white,
-                        mainInfoTextColor: .white,
+                        mainTextColor: .label,
+                        mainInfoTextColor: .label,
                         imageURL: nil,
                         image: RandomData.image
                     )

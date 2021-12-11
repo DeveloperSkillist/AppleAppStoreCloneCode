@@ -357,7 +357,10 @@ extension AppViewController {
 }
 
 extension AppViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
 
 extension AppViewController: UICollectionViewDataSource {

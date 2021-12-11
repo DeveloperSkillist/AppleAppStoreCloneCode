@@ -13,3 +13,6 @@
 "in_app_purchase" = "in app purchase";
 
 "show_all_title" = "Show All";
+
+//MARK: App Detail
+"app_download_title" = "Install";

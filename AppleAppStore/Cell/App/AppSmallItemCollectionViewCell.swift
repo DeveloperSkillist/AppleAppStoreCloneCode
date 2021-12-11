@@ -33,7 +33,7 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var button: UIButton = {
+    private lazy var appActionButton: UIButton = {
         var button = UIButton()
         button.setTitle("down_title".localized, for: .normal)
         button.setTitleColor(.link, for: .normal)
@@ -64,12 +64,12 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupLayout() {
+    private func setupLayout() {
         [
             imageView,
             mainText,
             subText,
-            button,
+            appActionButton,
             inAppPurchaseText
         ].forEach {
             addSubview($0)
@@ -81,23 +81,23 @@ class AppSmallItemsCollectionViewCell: UICollectionViewCell {
             $0.width.height.equalTo(70)
         }
         
-        button.snp.makeConstraints {
+        appActionButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.width.equalTo(70)
         }
         
         inAppPurchaseText.snp.makeConstraints {
-            $0.centerX.equalTo(button)
-            $0.top.equalTo(button.snp.bottom)
+            $0.centerX.equalTo(appActionButton)
+            $0.top.equalTo(appActionButton.snp.bottom)
             $0.bottom.equalToSuperview()
-            $0.trailing.equalTo(button)
+            $0.trailing.equalTo(appActionButton)
         }
         
         mainText.snp.makeConstraints {
             $0.top.equalTo(imageView).offset(5)
             $0.leading.equalTo(imageView.snp.trailing).offset(10)
-            $0.trailing.equalTo(button.snp.leading).offset(-16)
+            $0.trailing.equalTo(appActionButton.snp.leading).offset(-16)
         }
         
         subText.snp.makeConstraints {

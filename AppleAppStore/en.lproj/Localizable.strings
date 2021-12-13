@@ -16,3 +16,7 @@
 
 //MARK: App Detail
 "app_download_title" = "Install";
+
+//MARK: SearchVC
+"search_title" = "Search";
+"search_placeholder" = "Game, App, Story";

@@ -38,6 +38,17 @@ class RootTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "gamecontroller.fill")
         )
         
-        viewControllers = [todayViewController, appViewController]
+//        let searchViewController = SearchNavigationController(rootViewController: SearchViewController())
+        let searchViewController = UINavigationController(rootViewController: SearchViewController())
+        searchViewController.tabBarItem = UITabBarItem(
+            title: "search_title".localized,
+            image: UIImage(systemName: "magnifyingglass"),
+            selectedImage: UIImage(systemName: "magnifyingglass"))
+        
+        viewControllers = [
+            todayViewController,
+            appViewController,
+            searchViewController
+        ]
     }
 }

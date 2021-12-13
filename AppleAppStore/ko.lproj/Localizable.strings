@@ -16,3 +16,7 @@
 
 //MARK: App Detail
 "app_download_title" = "받기";
+
+//MARK: SearchVC
+"search_title" = "검색";
+"search_placeholder" = "게임, 앱, 스토리 등";

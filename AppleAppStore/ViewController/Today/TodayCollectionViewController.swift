@@ -242,3 +242,13 @@ extension TodayCollectionViewController {
         statusBar.isHidden = isStatusBarHidden
     }
 }
+
+extension TodayCollectionViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.section].items[indexPath.row]
+        
+//        let detailVC = DetailViewController()
+//        detailVC.modalPresentationStyle = .overFullScreen
+//        present(detailVC, animated: true, completion: nil)
+    }
+}

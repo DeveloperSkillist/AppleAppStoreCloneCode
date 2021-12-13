@@ -18,7 +18,6 @@ enum DetailSection: Int {
     case infoShortItem
     case screenShots
     case textInfo
-    case textInfoWithHeader
     case review
     case newFeatureInfo
     case infoListItem

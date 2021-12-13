@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
             case .screenShots:
                 return self?.createScreenShotItemSection()
                 
-            case .textInfoWithHeader:
+            case .textInfo:
                 return self?.createTextInfoWithHeaderSection()
                 
             case .review:
@@ -264,7 +264,7 @@ extension DetailViewController: UICollectionViewDataSource {
         case .textInfo:
             return UICollectionViewCell()
             
-        case .textInfoWithHeader:
+        case .textInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -305,7 +305,6 @@ extension DetailViewController: UICollectionViewDataSource {
                 headerView.setupLargeTitleData(largeTitleText: "새로운 기능", largeButtonText: "버전 기록")
                 return headerView
                 
-                
             case .review:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView", for: indexPath) as? DetailReviewHeaderView else {
                     return UICollectionReusableView()
@@ -335,10 +334,10 @@ extension DetailViewController {
             DetailItem(itemType: .screenShots, items: ["temp","12","12","12","12","12"], headerType: .none)
         )
         items.append(
-            DetailItem(itemType: .textInfoWithHeader, items: ["temp"], headerType: .largeTitle)
+            DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
         )
         items.append(
-            DetailItem(itemType: .textInfoWithHeader, items: ["temp"], headerType: .largeTitle)
+            DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
         )
         items.append(
             DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)

@@ -46,31 +46,28 @@ class AppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
+//        setupNavigationBar()
         setupLayout()
         setupItems()
     }
     
     private func setupNavigationBar() {
-        view.backgroundColor = .systemBackground
         navigationItem.title = "app_title".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         //large title text 설정
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
         
-        let accountProfileView = AccountProfileView()
-        accountProfileView.clipsToBounds = true
-        accountProfileView.backgroundColor = .label
-        accountProfileView.layer.cornerRadius = 15
-        navigationController?.navigationBar.addSubview(accountProfileView)
-        accountProfileView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(10)
-            $0.width.height.equalTo(30)
-        }
+        
+//        let accountProfileView = AccountProfileView() navigationController?.navigationBar.addSubview(accountProfileView)
+//        accountProfileView.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(16)
+//            $0.bottom.equalToSuperview().inset(10)
+//            $0.width.height.equalTo(30)
+//        }
     }
     
     private func setupLayout() {
+        view.backgroundColor = .systemBackground
         [
             collectionView
         ].forEach {
@@ -295,6 +292,11 @@ class AppViewController: UIViewController {
                 mainInfoText: ""
             )
         ]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
     }
 }
 

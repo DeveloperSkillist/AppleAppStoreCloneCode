@@ -41,5 +41,8 @@ class AccountProfileView: UIView {
         profileView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        self.clipsToBounds = true
+        self.backgroundColor = .label
+        self.layer.cornerRadius = 15
     }
 }

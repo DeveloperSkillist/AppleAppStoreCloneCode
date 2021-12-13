@@ -19,10 +19,18 @@ class DetailViewController: UIViewController {
 //        collectionView.delegate = self
         
         collectionView.backgroundColor = .systemBackground
+        
+        //cell
         collectionView.register(DetailMainCollectionViewCell.self, forCellWithReuseIdentifier: "DetailMainCollectionViewCell")
         collectionView.register(DetailInfoShortItemCollectionViewCell.self, forCellWithReuseIdentifier: "DetailInfoShortItemCollectionViewCell")
         collectionView.register(DetailScreenShotCollectionViewCell.self, forCellWithReuseIdentifier: "DetailScreenShotCollectionViewCell")
+        collectionView.register(DetailTextInfoCollectionViewCell.self, forCellWithReuseIdentifier: "DetailTextInfoCollectionViewCell")
+        collectionView.register(DetailReviewCollectionViewCell.self, forCellWithReuseIdentifier: "DetailReviewCollectionViewCell")
+    
+        //header
         collectionView.register(DetailLineCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineCollectionHeaderView")
+        collectionView.register(DetailLargeTitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView")
+        collectionView.register(DetailReviewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView")
         return collectionView
     }()
     
@@ -37,6 +45,13 @@ class DetailViewController: UIViewController {
                 
             case .screenShots:
                 return self?.createScreenShotItemSection()
+                
+            case .textInfoWithHeader:
+                return self?.createTextInfoWithHeaderSection()
+                
+            case .review:
+                return self?.createReviewSection()
+                
             default:
                 return nil
             }
@@ -46,13 +61,14 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
+//        setupNavigationBar()
         setupLayout()
         setDummyData()
     }
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = false
+//        navigationController?.navigationBar.tintColor = .link
     }
     
     private func setupLayout() {
@@ -65,6 +81,11 @@ class DetailViewController: UIViewController {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
     }
 }
 
@@ -111,7 +132,7 @@ extension DetailViewController {
         section.contentInsets = .init(top: sectionMargin, leading: sectionMargin, bottom: sectionMargin, trailing: sectionMargin)
         
         //header
-        let sectionHeader = createLineHeader()
+        let sectionHeader = createHeader()
         section.boundarySupplementaryItems = [sectionHeader]
         
         return section
@@ -138,14 +159,67 @@ extension DetailViewController {
         
         return section
     }
+    
+    private func createTextInfoWithHeaderSection() -> NSCollectionLayoutSection {
+        let itemMargin: CGFloat = 5
+        let sectionMargin: CGFloat = 15
+        
+        //item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: itemMargin, leading: itemMargin, bottom: itemMargin, trailing: itemMargin)
+        
+        //group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(self.view.frame.width - (sectionMargin * 2)), heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
+        section.contentInsets = .init(top: sectionMargin, leading: sectionMargin, bottom: sectionMargin, trailing: sectionMargin)
+        
+        //header
+        let sectionHeader = createHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
+    
+    private func createReviewSection() -> NSCollectionLayoutSection {
+        let itemMargin: CGFloat = 5
+        let sectionMargin: CGFloat = 15
+        
+        //item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: itemMargin, leading: itemMargin, bottom: itemMargin, trailing: itemMargin)
+        
+        //group
+        let width = (self.view.frame.width - (sectionMargin * 2))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(width * 0.7))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: sectionMargin, leading: sectionMargin, bottom: sectionMargin, trailing: sectionMargin)
+        
+        //header
+        let sectionHeader = createHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
 }
 
 extension DetailViewController {
-    private func createLineHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         //section에 보여줄 헤더를 구현
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(1)
+            heightDimension: .estimated(1)
         )
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
@@ -187,11 +261,23 @@ extension DetailViewController: UICollectionViewDataSource {
             }
             return cell
             
-        case .infoText:
+        case .textInfo:
             return UICollectionViewCell()
             
+        case .textInfoWithHeader:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            cell.collectionViewLayoutUpdateDelegate = self
+            return cell
+            
         case .review:
-            return UICollectionViewCell()
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailReviewCollectionViewCell", for: indexPath) as? DetailReviewCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            
+            return cell
             
         case .newFeatureInfo:
             return UICollectionViewCell()
@@ -210,6 +296,21 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineCollectionHeaderView", for: indexPath) as? DetailLineCollectionHeaderView else {
                     return UICollectionReusableView()
                 }
+                return headerView
+                
+            case .largeTitle:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView", for: indexPath) as? DetailLargeTitleHeaderView else {
+                    return UICollectionReusableView()
+                }
+                headerView.setupLargeTitleData(largeTitleText: "새로운 기능", largeButtonText: "버전 기록")
+                return headerView
+                
+                
+            case .review:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView", for: indexPath) as? DetailReviewHeaderView else {
+                    return UICollectionReusableView()
+                }
+                headerView.setupLargeTitleData(largeTitleText: "평가 및 리뷰", largeButtonText: "모두 보기")
                 return headerView
                 
             case .none:
@@ -233,6 +334,21 @@ extension DetailViewController {
         items.append(
             DetailItem(itemType: .screenShots, items: ["temp","12","12","12","12","12"], headerType: .none)
         )
+        items.append(
+            DetailItem(itemType: .textInfoWithHeader, items: ["temp"], headerType: .largeTitle)
+        )
+        items.append(
+            DetailItem(itemType: .textInfoWithHeader, items: ["temp"], headerType: .largeTitle)
+        )
+        items.append(
+            DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)
+        )
         collectionView.reloadData()
+    }
+}
+
+extension DetailViewController: CollectionViewLayoutUpdateDelegate {
+    func collectionViewLayoutUpdate() {
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
 }

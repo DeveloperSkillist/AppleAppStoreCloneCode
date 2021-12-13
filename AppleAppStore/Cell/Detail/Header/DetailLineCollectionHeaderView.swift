@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailLineCollectionHeaderView: UICollectionReusableView {
-    private lazy var lineView: UIView = {
+    lazy var lineView: UIView = {
         var lineView = UIView()
         lineView.backgroundColor = UIColor(named: "labelgray")
         return lineView
@@ -17,14 +17,14 @@ class DetailLineCollectionHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupLayout()
+        setupLine()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupLayout() {
+    private func setupLine() {
         addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.edges.equalToSuperview()

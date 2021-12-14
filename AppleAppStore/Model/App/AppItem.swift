@@ -17,7 +17,7 @@ struct AppItem {
 }
 
 enum AppItemType: Int {
-    case LargeItem
-    case MediumItem
-    case SmallItem
+    case largeItem
+    case mediumItem
+    case smallItem
 }

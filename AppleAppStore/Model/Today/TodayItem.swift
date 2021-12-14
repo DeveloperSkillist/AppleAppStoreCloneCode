@@ -15,7 +15,7 @@ struct TodayItem {
 }
 
 enum TodayItemType: Int {
-    case AccountProfile
-    case LargeItem
-    case SmallItem
+    case accountProfile
+    case largeItem
+    case smallItem
 }

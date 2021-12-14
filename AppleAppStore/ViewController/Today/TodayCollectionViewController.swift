@@ -56,9 +56,9 @@ extension TodayCollectionViewController {
     
     private func setList() {
         items = [
-            TodayItem(type: .AccountProfile, items: ["myAccount"]),
+            TodayItem(type: .accountProfile, items: ["myAccount"]),
             
-            TodayItem(type: .LargeItem, items: [
+            TodayItem(type: .largeItem, items: [
                 TodayLargeItem(
                     subText: "함께하는 프로젝트!",
                     mainText: "Skillist의\n속업오버로드~",
@@ -70,14 +70,14 @@ extension TodayCollectionViewController {
                 )
             ]),
             
-            TodayItem(type: .SmallItem, items: [
+            TodayItem(type: .smallItem, items: [
                 TodaySmallItem(mainText: "랜덤 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
                 TodaySmallItem(mainText: "랜덤 skillist", subText: "코딩량이 많아요", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
                 TodaySmallItem(mainText: "랜덤 skillist", subText: "그래도 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
                 TodaySmallItem(mainText: "랜덤 skillist", subText: "완전 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image)
             ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
             
-            TodayItem(type: .LargeItem, items: [
+            TodayItem(type: .largeItem, items: [
                 TodayLargeItem(
                     subText: "이렇게 하세요.",
                     mainText: "클론코딩으로 실력을 키우자.",
@@ -97,11 +97,11 @@ extension TodayCollectionViewController {
     private func layout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
             switch self?.items[section].type {
-            case .AccountProfile:
+            case .accountProfile:
                 return self?.createAccountSection()
-            case .LargeItem:
+            case .largeItem:
                 return self?.createLargeItemSection()
-            case .SmallItem:
+            case .smallItem:
                 return self?.createSmallItemSection()
             default:
                 return nil
@@ -188,13 +188,13 @@ extension TodayCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch items[indexPath.section].type {
-        case .AccountProfile:
+        case .accountProfile:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayAccountCollectionViewCell", for: indexPath) as? TodayAccountCollectionViewCell else {
                 return UICollectionViewCell()
             }
             return cell
             
-        case .LargeItem:
+        case .largeItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayLargeItemCollectionViewCell", for: indexPath) as? TodayLargeItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -205,7 +205,7 @@ extension TodayCollectionViewController {
             cell.setup(largeItem: largeItem)
             return cell
             
-        case .SmallItem:
+        case .smallItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodaySmallItemCollectionViewCell", for: indexPath) as? TodaySmallItemCollectionViewCell else {
                 return UICollectionViewCell()
             }

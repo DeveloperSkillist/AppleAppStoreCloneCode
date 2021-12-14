@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E278C17C5B520A725AA48B1 /* Pods_AppleAppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D700261A3E92FB9BF68406 /* Pods_AppleAppStore.framework */; };
 		360379282759BCE7002AAAB6 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360379272759BCE7002AAAB6 /* AppItem.swift */; };
 		3603792A2759BD3C002AAAB6 /* AppSmallItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360379292759BD3C002AAAB6 /* AppSmallItem.swift */; };
 		3603792C2759BD51002AAAB6 /* AppLargeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3603792B2759BD51002AAAB6 /* AppLargeItem.swift */; };
@@ -30,7 +31,6 @@
 		3659325527578D1600E08E8F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3659325727578D1600E08E8F /* Localizable.strings */; };
 		3659325B27578D3B00E08E8F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659325A27578D3B00E08E8F /* String+Extension.swift */; };
 		365932632757941100E08E8F /* TodayAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932622757941100E08E8F /* TodayAccountCollectionViewCell.swift */; };
-		365932672757947E00E08E8F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 365932662757947E00E08E8F /* SnapKit */; };
 		3659326A2757968500E08E8F /* DownloadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365932692757968500E08E8F /* DownloadableImageView.swift */; };
 		3659326D2757982400E08E8F /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659326C2757982400E08E8F /* ImageCache.swift */; };
 		3659326F275798AE00E08E8F /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3659326E275798AE00E08E8F /* APIKey.swift */; };
@@ -54,6 +54,7 @@
 		366BDB3927677F35000DB03C /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3827677F35000DB03C /* SearchResultViewController.swift */; };
 		366BDB3C276782A2000DB03C /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3B276782A2000DB03C /* SearchItem.swift */; };
 		366BDB3F27678678000DB03C /* SearchResultAppCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3E27678678000DB03C /* SearchResultAppCollectionViewCell.swift */; };
+		36944F2D2768AA6C00F40C5C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 36944F2C2768AA6C00F40C5C /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,10 @@
 		366BDB3827677F35000DB03C /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		366BDB3B276782A2000DB03C /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		366BDB3E27678678000DB03C /* SearchResultAppCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAppCollectionViewCell.swift; sourceTree = "<group>"; };
+		36944F2C2768AA6C00F40C5C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		43D700261A3E92FB9BF68406 /* Pods_AppleAppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppleAppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4847ABC8AE2C45D887AB69A /* Pods-AppleAppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleAppStore.release.xcconfig"; path = "Target Support Files/Pods-AppleAppStore/Pods-AppleAppStore.release.xcconfig"; sourceTree = "<group>"; };
+		EC3E9810ABE4E785BE4CD475 /* Pods-AppleAppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleAppStore.debug.xcconfig"; path = "Target Support Files/Pods-AppleAppStore/Pods-AppleAppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,13 +119,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				365932672757947E00E08E8F /* SnapKit in Frameworks */,
+				2E278C17C5B520A725AA48B1 /* Pods_AppleAppStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04405433734DA433FFADDBDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43D700261A3E92FB9BF68406 /* Pods_AppleAppStore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		360379252759B761002AAAB6 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,8 +173,11 @@
 		3659322F2757845F00E08E8F = {
 			isa = PBXGroup;
 			children = (
+				36944F2C2768AA6C00F40C5C /* .swiftlint.yml */,
 				3659323A2757845F00E08E8F /* AppleAppStore */,
 				365932392757845F00E08E8F /* Products */,
+				C2872283C24F4F492FAAA425 /* Pods */,
+				04405433734DA433FFADDBDB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -359,6 +375,15 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		C2872283C24F4F492FAAA425 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC3E9810ABE4E785BE4CD475 /* Pods-AppleAppStore.debug.xcconfig */,
+				D4847ABC8AE2C45D887AB69A /* Pods-AppleAppStore.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -366,18 +391,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3659324C2757846300E08E8F /* Build configuration list for PBXNativeTarget "AppleAppStore" */;
 			buildPhases = (
+				BEF90703F8C3E48ECD3592F0 /* [CP] Check Pods Manifest.lock */,
 				365932342757845F00E08E8F /* Sources */,
 				365932352757845F00E08E8F /* Frameworks */,
 				365932362757845F00E08E8F /* Resources */,
+				DD1F5CDC1AFC002655A8B25A /* [CP] Embed Pods Frameworks */,
+				36944F2B2768AA4600F40C5C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = AppleAppStore;
-			packageProductDependencies = (
-				365932662757947E00E08E8F /* SnapKit */,
-			);
 			productName = AppleAppStore;
 			productReference = 365932382757845F00E08E8F /* AppleAppStore.app */;
 			productType = "com.apple.product-type.application";
@@ -407,9 +432,6 @@
 				ko,
 			);
 			mainGroup = 3659322F2757845F00E08E8F;
-			packageReferences = (
-				365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */,
-			);
 			productRefGroup = 365932392757845F00E08E8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -424,6 +446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36944F2D2768AA6C00F40C5C /* .swiftlint.yml in Resources */,
 				365932482757846300E08E8F /* LaunchScreen.storyboard in Resources */,
 				3655DBF727590C4500597095 /* Colors.xcassets in Resources */,
 				3659325527578D1600E08E8F /* Localizable.strings in Resources */,
@@ -432,6 +455,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36944F2B2768AA4600F40C5C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		BEF90703F8C3E48ECD3592F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppleAppStore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD1F5CDC1AFC002655A8B25A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppleAppStore/Pods-AppleAppStore-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppleAppStore/Pods-AppleAppStore-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppleAppStore/Pods-AppleAppStore-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		365932342757845F00E08E8F /* Sources */ = {
@@ -627,6 +709,7 @@
 		};
 		3659324D2757846300E08E8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC3E9810ABE4E785BE4CD475 /* Pods-AppleAppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -653,6 +736,7 @@
 		};
 		3659324E2757846300E08E8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4847ABC8AE2C45D887AB69A /* Pods-AppleAppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -699,25 +783,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				branch = develop;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		365932662757947E00E08E8F /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 365932652757947E00E08E8F /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 365932302757845F00E08E8F /* Project object */;
 }

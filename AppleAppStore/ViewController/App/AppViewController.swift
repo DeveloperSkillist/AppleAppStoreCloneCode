@@ -13,12 +13,12 @@ class AppViewController: UIViewController {
     private lazy var layout: UICollectionViewLayout = {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
             switch self?.items[section].type {
-            case .LargeItem:
+            case .largeItem:
                 return self?.createLargeItemSection()
-            case .MediumItem:
+            case .mediumItem:
 //                return self?.createMediumItemInfoSection()
                 return nil
-            case .SmallItem:
+            case .smallItem:
                 return self?.createSmallItemSection()
             default:
                 return nil
@@ -82,7 +82,7 @@ class AppViewController: UIViewController {
     private func setupItems() {
         items = [
             AppItem(
-                type: .LargeItem,
+                type: .largeItem,
                 items: [
                     AppLargeItem(
                         subText: "2021 App Store Awards",
@@ -120,7 +120,7 @@ class AppViewController: UIViewController {
                 mainInfoText: ""
             ),
             AppItem(
-                type: .SmallItem,
+                type: .smallItem,
                 items: [
                     AppSmallItem(
                         mainText: "랜덤 skillist",
@@ -175,7 +175,7 @@ class AppViewController: UIViewController {
                 isAllShowButton: RandomData.boolean
             ),
             AppItem(
-                type: .SmallItem,
+                type: .smallItem,
                 items: [
                     AppSmallItem(
                         mainText: "랜덤 skillist",
@@ -254,7 +254,7 @@ class AppViewController: UIViewController {
                 isAllShowButton: RandomData.boolean
             ),
             AppItem(
-                type: .LargeItem,
+                type: .largeItem,
                 items: [
                     AppLargeItem(
                         subText: "너와 나의 메모리 - 베이식",
@@ -376,7 +376,7 @@ extension AppViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch items[indexPath.section].type {
-        case .LargeItem:
+        case .largeItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppLargeItemCollectionViewCell", for: indexPath) as? AppLargeItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
@@ -386,10 +386,10 @@ extension AppViewController: UICollectionViewDataSource {
             cell.setup(item: item)
             return cell
             
-        case .MediumItem:
+        case .mediumItem:
             return UICollectionViewCell()
             
-        case .SmallItem:
+        case .smallItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppSmallItemsCollectionViewCell", for: indexPath) as? AppSmallItemsCollectionViewCell else {
                 return UICollectionViewCell()
             }

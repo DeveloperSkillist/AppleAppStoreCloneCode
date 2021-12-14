@@ -49,12 +49,6 @@ class TodaySmallItemCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    init() {
-        super.init(frame: .zero)
-        
-//        setupLayout()
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()

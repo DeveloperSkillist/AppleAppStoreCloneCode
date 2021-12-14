@@ -8,8 +8,8 @@
 import Foundation
 
 struct TodayItem {
-    let type: TodayItemType
-    let items: [Any]
+    var type: TodayItemType
+    var items: [Any]
     var subText: String?
     var mainText: String?
 }

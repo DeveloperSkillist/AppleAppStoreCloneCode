@@ -8,8 +8,8 @@
 import Foundation
 
 struct SearchItem {
-    let itemType: SearchItemType
-    let item: Any
+    var itemType: SearchItemType
+    var item: Any
 }
 
 enum SearchItemType {

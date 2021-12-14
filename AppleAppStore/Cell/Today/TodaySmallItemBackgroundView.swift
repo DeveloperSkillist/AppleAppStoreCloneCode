@@ -12,6 +12,14 @@ class TodaySmallItemBackgroundView: UICollectionReusableView {
     private lazy var backgroundView: UIView = {
         var view = UIView()
         view.backgroundColor = UIColor(named: "white,darkgray")
+        view.layer.cornerRadius = 15
+        view.clipsToBounds = true
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = .zero
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
+        view.layer.masksToBounds = false
         return view
     }()
     
@@ -32,13 +40,5 @@ class TodaySmallItemBackgroundView: UICollectionReusableView {
             $0.edges.equalToSuperview()
                 .inset(16)
         }
-        backgroundView.layer.cornerRadius = 15
-        backgroundView.clipsToBounds = true
-        
-        backgroundView.layer.shadowColor = UIColor.black.cgColor
-        backgroundView.layer.shadowOffset = .zero
-        backgroundView.layer.shadowOpacity = 0.5
-        backgroundView.layer.shadowRadius = 10
-        backgroundView.layer.masksToBounds = false
     }
 }

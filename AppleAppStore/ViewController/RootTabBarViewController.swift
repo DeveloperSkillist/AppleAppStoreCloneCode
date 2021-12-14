@@ -22,9 +22,7 @@ class RootTabBarViewController: UITabBarController {
     }
     
     func setupTabBarItem() {
-        
-        let layout = UICollectionViewFlowLayout()
-        let todayViewController = TodayCollectionViewController(collectionViewLayout: layout)
+        let todayViewController = TodayCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         todayViewController.tabBarItem = UITabBarItem(
             title: "today_title".localized,
             image: UIImage(systemName: "doc.richtext"),

@@ -13,6 +13,7 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.text = currentDate
         return label
     }()
     
@@ -20,10 +21,18 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .label
         label.font = .systemFont(ofSize: 34, weight: .bold)
+        label.text = "today_title".localized
         return label
     }()
     
     private lazy var accountProfileView = AccountProfileView()
+    
+    private var currentDate: String {
+        let dataFormatter = DateFormatter()
+        dataFormatter.dateFormat = "MM. dd. E"
+        dataFormatter.locale = Locale(identifier: Locale.current.identifier)
+        return dataFormatter.string(from: Date())
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +54,7 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         }
         
         dateLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(largeTitle.snp.top)
         }
         
@@ -59,17 +68,5 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(10)
             $0.width.height.equalTo(30)
         }
-        accountProfileView.layer.cornerRadius = 15
-        accountProfileView.clipsToBounds = true
-        
-        dateLabel.text = getCurrentDate
-        largeTitle.text = "today_title".localized
-    }
-    
-    var getCurrentDate: String {
-        let dataFormatter = DateFormatter()
-        dataFormatter.dateFormat = "MM. dd. E"
-        dataFormatter.locale = Locale(identifier: Locale.current.identifier)
-        return dataFormatter.string(from: Date())
     }
 }

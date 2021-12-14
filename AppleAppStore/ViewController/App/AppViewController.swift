@@ -15,11 +15,14 @@ class AppViewController: UIViewController {
             switch self?.items[section].type {
             case .largeItem:
                 return self?.createLargeItemSection()
-            case .mediumItem:
+                
+//            case .mediumItem:
 //                return self?.createMediumItemInfoSection()
-                return nil
+//                return nil
+                
             case .smallItem:
                 return self?.createSmallItemSection()
+                
             default:
                 return nil
             }
@@ -41,14 +44,12 @@ class AppViewController: UIViewController {
     }()
     
     private var items: [AppItem] = []
-    let margin: CGFloat = 16
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setupNavigationBar()
         setupLayout()
-        setupItems()
+        setupData()
     }
     
     private func setupNavigationBar() {
@@ -56,7 +57,8 @@ class AppViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         //large title text 설정
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-        
+
+        //TODO: large title에 accound 추가
 //        let accountProfileView = AccountProfileView() navigationController?.navigationBar.addSubview(accountProfileView)
 //        accountProfileView.snp.makeConstraints {
 //            $0.trailing.equalToSuperview().inset(16)
@@ -78,7 +80,135 @@ class AppViewController: UIViewController {
         }
     }
     
-    private func setupItems() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
+    }
+}
+
+extension AppViewController {
+    private func createLargeItemSection() -> NSCollectionLayoutSection {
+        let sectionMargin: CGFloat = 10
+        let groupMargin: CGFloat = 6
+        
+        //item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//        item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //group
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(view.frame.width - (sectionMargin * 2)),
+            heightDimension: .estimated(350)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = .init(top: 0, leading: groupMargin, bottom: 0, trailing: groupMargin)
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: sectionMargin + groupMargin, leading: sectionMargin, bottom: sectionMargin + groupMargin, trailing: sectionMargin)
+        
+        return section
+    }
+    
+    private func createSmallItemSection() -> NSCollectionLayoutSection {
+        //item
+        let itemMargin: CGFloat = 4
+        let sectionMargin: CGFloat = 12
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 0, leading: itemMargin, bottom: 0, trailing: itemMargin)
+        
+        //group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - (sectionMargin * 2)), heightDimension: .estimated(250))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: sectionMargin + itemMargin, leading: sectionMargin, bottom: sectionMargin + itemMargin, trailing: sectionMargin)
+        
+        //header
+        let sectionHeader = self.createSmallItemSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
+    
+    private func createSmallItemSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        //section header 사이즈
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
+        
+        //section header Layout
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        return sectionHeader
+     }
+}
+
+extension AppViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        //TODO detailVC item 설정
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension AppViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items[section].items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let itemType = items[indexPath.section].type
+        switch itemType {
+        case .largeItem:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppLargeItemCollectionViewCell", for: indexPath) as? AppLargeItemCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            guard let item = items[indexPath.section].items[indexPath.row] as? AppLargeItem else {
+                return UICollectionViewCell()
+            }
+            cell.setup(item: item)
+            return cell
+            
+//        case .mediumItem:
+//            return UICollectionViewCell()
+            
+        case .smallItem:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppSmallItemsCollectionViewCell", for: indexPath) as? AppSmallItemsCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            guard let item = items[indexPath.section].items[indexPath.row] as? AppSmallItem else {
+                return UICollectionViewCell()
+            }
+            cell.setup(item: item)
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView", for: indexPath) as? AppSmallItemCollectionHeaderView else {
+                return UICollectionReusableView()
+            }
+            let item = items[indexPath.section]
+            headerView.setup(mainText: item.mainText)
+            return headerView
+        }
+        return UICollectionReusableView()
+    }
+}
+
+extension AppViewController {
+    private func setupData() {
         items = [
             AppItem(
                 type: .largeItem,
@@ -291,124 +421,5 @@ class AppViewController: UIViewController {
                 mainInfoText: ""
             )
         ]
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavigationBar()
-    }
-}
-
-extension AppViewController {
-    private func createLargeItemSection() -> NSCollectionLayoutSection {
-        
-        //item
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        //group
-        let groupMargin: CGFloat = 6
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - ((margin - groupMargin) * 2)), heightDimension: .estimated(350))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-        group.contentInsets = .init(top: 0, leading: groupMargin, bottom: 0, trailing: groupMargin)
-        
-        //section
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
-        section.contentInsets = .init(top: margin, leading: margin - groupMargin, bottom: margin, trailing: margin - groupMargin)
-        
-        return section
-    }
-    
-    private func createSmallItemSection() -> NSCollectionLayoutSection {
-        
-        //아이템
-        let itemMargin: CGFloat = 4
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 0, leading: itemMargin, bottom: 0, trailing: itemMargin)
-        
-        //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - ((margin - itemMargin) * 2)), heightDimension: .estimated(250))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 3)
-//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        
-        //section
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
-        section.contentInsets = .init(top: margin, leading: margin - itemMargin, bottom: margin, trailing: margin - itemMargin)
-        
-//      TODO: header
-        let sectionHeader = self.createSmallItemSectionHeader()
-        section.boundarySupplementaryItems = [sectionHeader]
-        
-        return section
-    }
-    
-    private func createSmallItemSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        //section header 사이즈
-        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40))
-        
-        //section header Layout
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
-        return sectionHeader
-     }
-}
-
-extension AppViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = DetailViewController()
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
-
-extension AppViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return items.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].items.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch items[indexPath.section].type {
-        case .largeItem:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppLargeItemCollectionViewCell", for: indexPath) as? AppLargeItemCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            guard let item = items[indexPath.section].items[indexPath.row] as? AppLargeItem else {
-                return UICollectionViewCell()
-            }
-            cell.setup(item: item)
-            return cell
-            
-        case .mediumItem:
-            return UICollectionViewCell()
-            
-        case .smallItem:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppSmallItemsCollectionViewCell", for: indexPath) as? AppSmallItemsCollectionViewCell else {
-                return UICollectionViewCell()
-            }
-            guard let item = items[indexPath.section].items[indexPath.row] as? AppSmallItem else {
-                return UICollectionViewCell()
-            }
-            cell.setup(item: item)
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView", for: indexPath) as? AppSmallItemCollectionHeaderView else {
-                return UICollectionReusableView()
-            }
-            let item = items[indexPath.section]
-            headerView.setup(mainText: item.mainText)
-            return headerView
-        }
-        return UICollectionReusableView()
     }
 }

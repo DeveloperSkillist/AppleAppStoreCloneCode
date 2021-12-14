@@ -8,9 +8,9 @@
 import UIKit
 
 struct AppLargeItem {
-    let subText: String
-    let mainText: String
-    let mainInfoText: String
+    var subText: String
+    var mainText: String
+    var mainInfoText: String
     
     var subTextColor: UIColor = .label
     var mainTextColor: UIColor = .label

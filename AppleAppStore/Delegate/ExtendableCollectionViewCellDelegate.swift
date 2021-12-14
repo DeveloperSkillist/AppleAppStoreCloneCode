@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol CollectionViewLayoutUpdateDelegate: Any {
+protocol CollectionViewLayoutUpdateDelegate: AnyObject {
     func collectionViewLayoutUpdate()
 }

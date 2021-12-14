@@ -9,7 +9,7 @@ import UIKit
 
 class DetailTextInfoCollectionViewCell: UICollectionViewCell {
     
-    var collectionViewLayoutUpdateDelegate: CollectionViewLayoutUpdateDelegate?
+    weak var collectionViewLayoutUpdateDelegate: CollectionViewLayoutUpdateDelegate?
     
     private lazy var detailLabel: UILabel = {
         var label = UILabel()

@@ -8,8 +8,8 @@
 import Foundation
 
 struct AppItem {
-    let type: AppItemType
-    let items: [Any]
+    var type: AppItemType
+    var items: [Any]
     var subText: String?
     var mainText: String?
     var mainInfoText: String?
@@ -18,6 +18,6 @@ struct AppItem {
 
 enum AppItemType: Int {
     case largeItem
-    case mediumItem
+//    case mediumItem
     case smallItem
 }

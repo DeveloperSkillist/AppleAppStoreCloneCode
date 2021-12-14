@@ -62,8 +62,8 @@ extension TodayCollectionViewController {
 extension TodayCollectionViewController {
     private func layout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
-            let item = self?.items[section]
-            switch item?.type {
+            let itemType = self?.items[section].type
+            switch itemType {
             case .accountProfile:
                 return self?.createAccountSection()
                 
@@ -80,31 +80,32 @@ extension TodayCollectionViewController {
     }
     
     private func createAccountSection() -> NSCollectionLayoutSection {
-        //아이템
+        //item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        //그룹
+        //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(96))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         
-        //섹션
+        //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
+        section.contentInsets = .init(top: 0, leading: sectionDefaultMargin, bottom: 0, trailing: sectionDefaultMargin)
         
         return section
     }
     
     private func createLargeItemSection() -> NSCollectionLayoutSection {
-        //아이템
+        //item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        //그룹
+        //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1.4))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         
-        //섹션
+        //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
         section.contentInsets = .init(top: sectionDefaultMargin, leading: sectionDefaultMargin, bottom: sectionDefaultMargin, trailing: sectionDefaultMargin)
@@ -113,7 +114,7 @@ extension TodayCollectionViewController {
     }
     
     private func createSmallItemSection() -> NSCollectionLayoutSection {
-        //아이템
+        //item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
@@ -157,7 +158,8 @@ extension TodayCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch items[indexPath.section].type {
+        let itemType = items[indexPath.section].type
+        switch itemType {
         case .accountProfile:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayAccountCollectionViewCell", for: indexPath) as? TodayAccountCollectionViewCell else {
                 return UICollectionViewCell()
@@ -168,7 +170,6 @@ extension TodayCollectionViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayLargeItemCollectionViewCell", for: indexPath) as? TodayLargeItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             guard let largeItem = items[indexPath.section].items[indexPath.row] as? TodayLargeItem else {
                 return UICollectionViewCell()
             }
@@ -179,7 +180,6 @@ extension TodayCollectionViewController {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodaySmallItemCollectionViewCell", for: indexPath) as? TodaySmallItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             guard let smallItem = items[indexPath.section].items[indexPath.row] as? TodaySmallItem else {
                 return UICollectionViewCell()
             }
@@ -202,21 +202,19 @@ extension TodayCollectionViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let isStatusBarHidden = scrollView.contentOffset.y < 0
-        
         if isStatusBarHidden {
             statusBarView.backgroundColor = .clear
         } else {
             statusBarView.backgroundColor = .systemBackground
         }
-        
         statusBarView.isHidden = isStatusBarHidden
     }
 }
 
 extension TodayCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = items[indexPath.section].items[indexPath.row]
-        
+        //TODO: 아이템 터치시 화면 이동
+//        let item = items[indexPath.section].items[indexPath.row]
 //        let detailVC = DetailViewController()
 //        detailVC.modalPresentationStyle = .overFullScreen
 //        present(detailVC, animated: true, completion: nil)

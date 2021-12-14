@@ -30,12 +30,6 @@ class AppSmallItemCollectionHeaderView: UICollectionReusableView {
         return button
     }()
     
-    init() {
-        super.init(frame: .zero)
-        
-        setupLayout()
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -76,6 +70,5 @@ class AppSmallItemCollectionHeaderView: UICollectionReusableView {
     
     func setup(mainText: String?) {
         self.mainText.text = mainText
-//        self.subText.text = subText
     }
 }

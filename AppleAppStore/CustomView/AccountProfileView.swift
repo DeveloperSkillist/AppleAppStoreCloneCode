@@ -33,14 +33,15 @@ class AccountProfileView: UIView {
     }
     
     func setupLayout() {
-        self.backgroundColor = .label
-        self.layer.cornerRadius = self.layer.frame.height/2
         
         addSubview(profileView)
         
         profileView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        self.backgroundColor = .label
+        self.layer.cornerRadius = self.layer.frame.height/2
         self.clipsToBounds = true
         self.backgroundColor = .label
         self.layer.cornerRadius = 15

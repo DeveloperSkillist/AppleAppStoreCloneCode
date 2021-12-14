@@ -8,9 +8,9 @@
 import UIKit
 
 struct TodayLargeItem {
-    let subText: String
-    let mainText: String
-    let bottomText: String
+    var subText: String
+    var mainText: String
+    var bottomText: String
     
     var subTitleColor: UIColor = .black
     var mainTitleColor: UIColor = .black

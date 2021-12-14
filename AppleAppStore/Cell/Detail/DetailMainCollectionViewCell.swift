@@ -124,13 +124,9 @@ class DetailMainCollectionViewCell: UICollectionViewCell {
             $0.centerY.equalTo(appActionButton)
             $0.leading.equalTo(appActionButton.snp.trailing).offset(5)
         }
+        
         titleLabel.sizeToFit()
         titleLabel.text = "tempfjhghjg\nasd"
         infoLabel.text = "infoqweuiouwqioiofjsdlk"
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
     }
 }

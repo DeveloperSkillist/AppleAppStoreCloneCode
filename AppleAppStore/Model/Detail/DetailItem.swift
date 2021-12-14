@@ -8,9 +8,9 @@
 import Foundation
 
 struct DetailItem {
-    let itemType: DetailSection
-    let items: [Any]
-    let headerType: DetailSectionHeaderType
+    var itemType: DetailSection
+    var items: [Any]
+    var headerType: DetailSectionHeaderType
 }
 
 enum DetailSection: Int {

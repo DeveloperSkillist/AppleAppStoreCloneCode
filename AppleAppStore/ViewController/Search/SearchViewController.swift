@@ -13,9 +13,9 @@ class SearchViewController: UIViewController {
         var searchController = UISearchController(searchResultsController: SearchResultViewController())
         searchController.searchBar.placeholder = "search_placeholder".localized
         searchController.obscuresBackgroundDuringPresentation = false
-
-        searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.delegate = self
+        
         searchController.searchBar.delegate = self
         searchController.searchBar.setNeedsLayout()
         return searchController
@@ -23,7 +23,6 @@ class SearchViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-//        collectionView.backgroundColor = .orange
         return collectionView
     }()
     

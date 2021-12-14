@@ -8,7 +8,7 @@
 import UIKit
 
 struct AppMediumItem {
-    let mainText: String
+    var mainText: String
     
     var mainTitleColor: UIColor = .black
     

@@ -9,16 +9,17 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var items: [DetailItem] = []
+    private var items: [DetailItem] = []
+    
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: collectionViewLayout
         )
+        collectionView.backgroundColor = .systemBackground
+        
         collectionView.dataSource = self
 //        collectionView.delegate = self
-        
-        collectionView.backgroundColor = .systemBackground
         
         //cell
         collectionView.register(DetailMainCollectionViewCell.self, forCellWithReuseIdentifier: "DetailMainCollectionViewCell")
@@ -28,7 +29,7 @@ class DetailViewController: UIViewController {
         collectionView.register(DetailReviewCollectionViewCell.self, forCellWithReuseIdentifier: "DetailReviewCollectionViewCell")
     
         //header
-        collectionView.register(DetailLineCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineCollectionHeaderView")
+        collectionView.register(DetailLineHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView")
         collectionView.register(DetailLargeTitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView")
         collectionView.register(DetailReviewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView")
         return collectionView
@@ -36,7 +37,8 @@ class DetailViewController: UIViewController {
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
-            switch self?.items[section].itemType {
+            let itemType = self?.items[section].itemType
+            switch itemType {
             case .main:
                 return self?.createMainSection()
                 
@@ -61,14 +63,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        setupNavigationBar()
         setupLayout()
         setDummyData()
-    }
-    
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = false
-//        navigationController?.navigationBar.tintColor = .link
     }
     
     private func setupLayout() {
@@ -86,6 +82,10 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 
@@ -221,6 +221,7 @@ extension DetailViewController {
             widthDimension: .fractionalWidth(1),
             heightDimension: .estimated(1)
         )
+        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -265,7 +266,6 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
             
@@ -273,7 +273,6 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailReviewCollectionViewCell", for: indexPath) as? DetailReviewCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             return cell
             
         case .newFeatureInfo:
@@ -290,7 +289,7 @@ extension DetailViewController: UICollectionViewDataSource {
             switch items[indexPath.section].headerType {
                 
             case .line:
-                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineCollectionHeaderView", for: indexPath) as? DetailLineCollectionHeaderView else {
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView", for: indexPath) as? DetailLineHeaderView else {
                     return UICollectionReusableView()
                 }
                 return headerView
@@ -319,6 +318,12 @@ extension DetailViewController: UICollectionViewDataSource {
     }
 }
 
+extension DetailViewController: CollectionViewLayoutUpdateDelegate {
+    func collectionViewLayoutUpdate() {
+        self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+}
+
 extension DetailViewController {
     private func setDummyData() {
         items.append(
@@ -340,11 +345,5 @@ extension DetailViewController {
             DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)
         )
         collectionView.reloadData()
-    }
-}
-
-extension DetailViewController: CollectionViewLayoutUpdateDelegate {
-    func collectionViewLayoutUpdate() {
-        self.collectionView.collectionViewLayout.invalidateLayout()
     }
 }

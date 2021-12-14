@@ -1,5 +1,5 @@
 //
-//  DetailLineCollectionHeaderView.swift
+//  DetailLineHeaderView.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/11.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailLineCollectionHeaderView: UICollectionReusableView {
+class DetailLineHeaderView: UICollectionReusableView {
     lazy var lineView: UIView = {
         var lineView = UIView()
         lineView.backgroundColor = UIColor(named: "labelgray")

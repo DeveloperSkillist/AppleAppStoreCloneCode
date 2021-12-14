@@ -8,9 +8,9 @@
 import UIKit
 
 struct TodaySmallItem {
-    let mainText: String
-    let subText: String
-    let isInAppPurchase: Bool
+    var mainText: String
+    var subText: String
+    var isInAppPurchase: Bool
     var isInstalled: Bool
     
     var imageURL: String?

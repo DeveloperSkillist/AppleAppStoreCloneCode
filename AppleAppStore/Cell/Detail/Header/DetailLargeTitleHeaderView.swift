@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailLargeTitleHeaderView: DetailLineCollectionHeaderView {
+class DetailLargeTitleHeaderView: DetailLineHeaderView {
     
     lazy var largeTitleLabel: UILabel = {
         var label = UILabel()

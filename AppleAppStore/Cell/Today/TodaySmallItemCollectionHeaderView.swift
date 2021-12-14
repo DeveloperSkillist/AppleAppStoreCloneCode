@@ -8,7 +8,6 @@
 import UIKit
 
 class TodaySmallItemCollectionHeaderView: UICollectionReusableView {
-    
     private lazy var subText: UILabel = {
         var label = UILabel()
         label.textColor = .darkGray
@@ -24,11 +23,6 @@ class TodaySmallItemCollectionHeaderView: UICollectionReusableView {
         return label
     }()
     
-    init() {
-        super.init(frame: .zero)
-        
-        setupLayout()
-    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         

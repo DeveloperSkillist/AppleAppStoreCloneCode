@@ -9,16 +9,15 @@ import UIKit
 
 class TodayCollectionViewController: UICollectionViewController {
 
-    let todaySmallItemSectionBackground = "TodaySmallItemSectionBackground"
-    
-    private lazy var statusBar: UIView = {
+    private lazy var statusBarView: UIView = {
         var view = UIView()
         view.backgroundColor = .clear
         view.alpha = 0.9
         return view
     }()
     
-    let margin: CGFloat = 16
+    let todaySmallItemSectionBackground = "TodaySmallItemSectionBackground"
+    let sectionDefaultMargin: CGFloat = 16
     var items: [TodayItem] = []
     
     override func viewDidLoad() {
@@ -26,83 +25,54 @@ class TodayCollectionViewController: UICollectionViewController {
 
         setupCollectionView()
         setupLayout()
-        setList()
+        setData()
     }
 }
 
 extension TodayCollectionViewController {
     private func setupCollectionView() {
         collectionView.backgroundColor = .systemBackground
-//        collectionView.delegate = self
+
+        collectionView.collectionViewLayout = layout()
         
+        //cell
         collectionView.register(TodayAccountCollectionViewCell.self, forCellWithReuseIdentifier: "TodayAccountCollectionViewCell")
         collectionView.register(TodayLargeItemCollectionViewCell.self, forCellWithReuseIdentifier: "TodayLargeItemCollectionViewCell")
         collectionView.register(TodaySmallItemCollectionViewCell.self, forCellWithReuseIdentifier: "TodaySmallItemCollectionViewCell")
         
+        //header
         collectionView.register(TodaySmallItemCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TodaySmallItemCollectionViewCell")
-        collectionView.collectionViewLayout = layout()
+        
+        //section background
         collectionView.collectionViewLayout.register(TodaySmallItemBackgroundView.self, forDecorationViewOfKind: todaySmallItemSectionBackground)
     }
     
     private func setupLayout() {
         view.backgroundColor = .black
         
-        view.addSubview(statusBar)
-        statusBar.snp.makeConstraints {
+        //status bar view
+        view.addSubview(statusBarView)
+        statusBarView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
-    }
-    
-    private func setList() {
-        items = [
-            TodayItem(type: .accountProfile, items: ["myAccount"]),
-            
-            TodayItem(type: .largeItem, items: [
-                TodayLargeItem(
-                    subText: "함께하는 프로젝트!",
-                    mainText: "Skillist의\n속업오버로드~",
-                    bottomText: "우리 같이 공부해요.",
-                    subTitleColor: .darkGray,
-                    bottomTitlecolor: .darkGray,
-                    imageURL: nil,
-                    image: RandomData.image
-                )
-            ]),
-            
-            TodayItem(type: .smallItem, items: [
-                TodaySmallItem(mainText: "랜덤 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
-                TodaySmallItem(mainText: "랜덤 skillist", subText: "코딩량이 많아요", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
-                TodaySmallItem(mainText: "랜덤 skillist", subText: "그래도 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
-                TodaySmallItem(mainText: "랜덤 skillist", subText: "완전 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image)
-            ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
-            
-            TodayItem(type: .largeItem, items: [
-                TodayLargeItem(
-                    subText: "이렇게 하세요.",
-                    mainText: "클론코딩으로 실력을 키우자.",
-                    bottomText: "아주 좋은 방법!",
-                    subTitleColor: .white,
-                    mainTitleColor: .white,
-                    bottomTitlecolor: .white,
-                    imageURL: nil,
-                    image: RandomData.image
-                )
-            ])
-        ]
     }
 }
 
 extension TodayCollectionViewController {
     private func layout() -> UICollectionViewLayout {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
-            switch self?.items[section].type {
+            let item = self?.items[section]
+            switch item?.type {
             case .accountProfile:
                 return self?.createAccountSection()
+                
             case .largeItem:
                 return self?.createLargeItemSection()
+                
             case .smallItem:
                 return self?.createSmallItemSection()
+                
             default:
                 return nil
             }
@@ -137,7 +107,7 @@ extension TodayCollectionViewController {
         //섹션
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: margin, leading: margin, bottom: margin, trailing: margin)
+        section.contentInsets = .init(top: sectionDefaultMargin, leading: sectionDefaultMargin, bottom: sectionDefaultMargin, trailing: sectionDefaultMargin)
         
         return section
     }
@@ -154,7 +124,7 @@ extension TodayCollectionViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: margin, leading: margin, bottom: margin + 30, trailing: margin)
+        section.contentInsets = .init(top: sectionDefaultMargin, leading: sectionDefaultMargin, bottom: sectionDefaultMargin + 30, trailing: sectionDefaultMargin)
         
         let sectionHeader = self.createSamllItemSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -234,12 +204,12 @@ extension TodayCollectionViewController {
         let isStatusBarHidden = scrollView.contentOffset.y < 0
         
         if isStatusBarHidden {
-            statusBar.backgroundColor = .clear
+            statusBarView.backgroundColor = .clear
         } else {
-            statusBar.backgroundColor = .systemBackground
+            statusBarView.backgroundColor = .systemBackground
         }
         
-        statusBar.isHidden = isStatusBarHidden
+        statusBarView.isHidden = isStatusBarHidden
     }
 }
 
@@ -250,5 +220,45 @@ extension TodayCollectionViewController {
 //        let detailVC = DetailViewController()
 //        detailVC.modalPresentationStyle = .overFullScreen
 //        present(detailVC, animated: true, completion: nil)
+    }
+}
+
+extension TodayCollectionViewController {
+    private func setData() {
+        items = [
+            TodayItem(type: .accountProfile, items: ["myAccount"]),
+            
+            TodayItem(type: .largeItem, items: [
+                TodayLargeItem(
+                    subText: "함께하는 프로젝트!",
+                    mainText: "Skillist의\n속업오버로드~",
+                    bottomText: "우리 같이 공부해요.",
+                    subTitleColor: .darkGray,
+                    bottomTitlecolor: .darkGray,
+                    imageURL: nil,
+                    image: RandomData.image
+                )
+            ]),
+            
+            TodayItem(type: .smallItem, items: [
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "생각보다 빡세네요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "코딩량이 많아요", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "그래도 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image),
+                TodaySmallItem(mainText: "랜덤 skillist", subText: "완전 재밌어요.", isInAppPurchase: RandomData.boolean, isInstalled: RandomData.boolean, imageURL: nil, image: RandomData.image)
+            ], subText: "Skillist의 앱 목록이에요.", mainText: "대박 대박 앱"),
+            
+            TodayItem(type: .largeItem, items: [
+                TodayLargeItem(
+                    subText: "이렇게 하세요.",
+                    mainText: "클론코딩으로 실력을 키우자.",
+                    bottomText: "아주 좋은 방법!",
+                    subTitleColor: .white,
+                    mainTitleColor: .white,
+                    bottomTitlecolor: .white,
+                    imageURL: nil,
+                    image: RandomData.image
+                )
+            ])
+        ]
     }
 }

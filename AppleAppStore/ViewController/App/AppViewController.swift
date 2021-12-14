@@ -31,11 +31,11 @@ class AppViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        
+        //cell
         collectionView.register(AppLargeItemCollectionViewCell.self, forCellWithReuseIdentifier: "AppLargeItemCollectionViewCell")
-        
         collectionView.register(AppSmallItemsCollectionViewCell.self, forCellWithReuseIdentifier: "AppSmallItemsCollectionViewCell")
         
+        //header
         collectionView.register(AppSmallItemCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView")
         return collectionView
     }()
@@ -56,7 +56,6 @@ class AppViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         //large title text 설정
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-        
         
 //        let accountProfileView = AccountProfileView() navigationController?.navigationBar.addSubview(accountProfileView)
 //        accountProfileView.snp.makeConstraints {
@@ -340,7 +339,7 @@ extension AppViewController {
         section.orthogonalScrollingBehavior = .groupPaging
         section.contentInsets = .init(top: margin, leading: margin - itemMargin, bottom: margin, trailing: margin - itemMargin)
         
-//        TODO header
+//      TODO: header
         let sectionHeader = self.createSmallItemSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
         

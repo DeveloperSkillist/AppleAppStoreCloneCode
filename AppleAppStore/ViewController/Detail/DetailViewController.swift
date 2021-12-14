@@ -262,9 +262,6 @@ extension DetailViewController: UICollectionViewDataSource {
             return cell
             
         case .textInfo:
-            return UICollectionViewCell()
-            
-        case .textInfo:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }

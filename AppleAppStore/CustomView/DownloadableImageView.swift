@@ -17,7 +17,6 @@ class DownloadableImageView: UIImageView {
     //이미지 다운로드 실패 시 이미지뷰 처리
     private var isFail: Bool = false {
         willSet {
-            textView.isHidden = !newValue
             loadingView.stopAnimating()
         }
     }
@@ -30,23 +29,10 @@ class DownloadableImageView: UIImageView {
         return loadingView
     }()
     
-    //이미지 뷰에서 다운로드 실패를 알려줄 인디케이터
-    private lazy var textView: UILabel = {
-        let textView = UILabel()
-        textView.text = "image_load_fail".localized
-        textView.font = .systemFont(ofSize: 14, weight: .bold)
-        textView.textColor = .white
-        textView.textAlignment = .center
-        textView.isHidden = true
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
     init() {
         super.init(frame: .zero)
         [
-            loadingView,
-//            textView
+            loadingView
         ].forEach {
             self.addSubview($0)
         }
@@ -59,8 +45,7 @@ class DownloadableImageView: UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         [
-            loadingView,
-//            textView
+            loadingView
         ].forEach {
             self.addSubview($0)
         }
@@ -68,10 +53,6 @@ class DownloadableImageView: UIImageView {
         loadingView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
-        
-//        textView.snp.makeConstraints {
-//            $0.edges.equalToSuperview().inset(10)
-//        }
     }
     
     required init?(coder: NSCoder) {
@@ -103,7 +84,7 @@ class DownloadableImageView: UIImageView {
             }
             
             guard error == nil,
-                  let response = response as? HTTPURLResponse,
+                  let _ = response as? HTTPURLResponse,
                   let data = data,
                   let image = UIImage(data: data) else {
                       print("imageDownload error1")

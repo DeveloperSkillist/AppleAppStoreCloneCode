@@ -31,8 +31,6 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
-        
-        
         setupLayout()
     }
     
@@ -66,8 +64,6 @@ class SearchViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = true
 
         definesPresentationContext = true
-        
-        
     }
 }
 

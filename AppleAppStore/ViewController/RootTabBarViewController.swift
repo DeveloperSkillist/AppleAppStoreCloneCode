@@ -31,14 +31,13 @@ class RootTabBarViewController: UITabBarController {
             selectedImage: UIImage(systemName: "doc.richtext.fill")
         )
         
-        let appViewController = AppNavigationController(rootViewController: AppViewController())
+        let appViewController = UINavigationController(rootViewController: AppViewController())
         appViewController.tabBarItem = UITabBarItem(
             title: "app_title".localized,
             image: UIImage(systemName: "gamecontroller"),
             selectedImage: UIImage(systemName: "gamecontroller.fill")
         )
         
-//        let searchViewController = SearchNavigationController(rootViewController: SearchViewController())
         let searchViewController = UINavigationController(rootViewController: SearchViewController())
         searchViewController.tabBarItem = UITabBarItem(
             title: "search_title".localized,

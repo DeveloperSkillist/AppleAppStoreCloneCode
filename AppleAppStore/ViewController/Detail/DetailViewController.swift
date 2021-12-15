@@ -25,19 +25,17 @@ class DetailViewController: UIViewController {
             sections.append(
                 DetailItem(itemType: .infoShortItem, items: item.languageCodesISO2A, headerType: .line)
             )
-            print("laungaceCode : \(item.languageCodesISO2A.count)")
             
             sections.append(
                 DetailItem(itemType: .screenShots, items: item.screenshotUrls, headerType: .none)
             )
+            
             sections.append(
-                DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
+                DetailItem(itemType: .textInfo, items: [item.releaseNotes], headerType: .largeTitle)
             )
+            
             sections.append(
-                DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
-            )
-            sections.append(
-                DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)
+                DetailItem(itemType: .review, items: item.supportedDevices, headerType: .review)
             )
             
             
@@ -311,12 +309,18 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            if let releaseNote = section.items?[indexPath.row] as? String {
+                cell.setupItem(text: releaseNote)
+            }
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
             
         case .review:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailReviewCollectionViewCell", for: indexPath) as? DetailReviewCollectionViewCell else {
                 return UICollectionViewCell()
+            }
+            if let supportedDevice = section.items?[indexPath.row] as? String {
+                cell.setupItem(text: supportedDevice)
             }
             return cell
             
@@ -350,7 +354,16 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView", for: indexPath) as? DetailReviewHeaderView else {
                     return UICollectionReusableView()
                 }
-                headerView.setupLargeTitleData(largeTitleText: "평가 및 리뷰", largeButtonText: "모두 보기")
+                headerView.setupLargeTitleData(
+                    largeTitleText: "평가 및 리뷰",
+                    largeButtonText: "모두 보기"
+                )
+                if let item = item {
+                    headerView.setupItem(
+                        rate: item.trackContentRating,
+                        ratingCount: item.userRatingCount
+                    )
+                }
                 return headerView
                 
             case .none:

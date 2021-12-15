@@ -22,6 +22,7 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
     private lazy var moreButton: UIButton = {
         var button = UIButton()
         button.setTitleColor(.link, for: .normal)
+        button.setTitle("더 보기", for: .normal)
         return button
     }()
     
@@ -52,8 +53,8 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
         moreButton.snp.makeConstraints {
             $0.trailing.bottom.equalTo(detailLabel)
         }
-        detailLabel.text = "1\n2\n3\n4\n5\n6\n7\n8"
-        moreButton.setTitle("더 보기", for: .normal)
+        
+        
         
         sizeToFit()
     }
@@ -67,5 +68,9 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
         moreButton.isHidden = true
         
         collectionViewLayoutUpdateDelegate?.collectionViewLayoutUpdate()
+    }
+    
+    func setupItem(text: String) {
+        detailLabel.text = text
     }
 }

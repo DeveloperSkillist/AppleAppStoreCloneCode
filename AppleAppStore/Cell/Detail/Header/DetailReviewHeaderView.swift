@@ -86,17 +86,15 @@ class DetailReviewHeaderView: DetailLargeTitleHeaderView {
             $0.top.bottom.equalTo(reviewSmallText)
             $0.trailing.equalTo(reviewRateView)
         }
-        
-        setupItem()
     }
     
     private func setupAction() {
         
     }
     
-    func setupItem() {
-        reviewRateText.text = "4.5"
+    func setupItem(rate: String, ratingCount: Int) {
+        reviewRateText.text = rate
         reviewSmallText.text = "(최고 5점)"
-        reviewNumbersText.text = "230개의 평가"
+        reviewNumbersText.text = "\(ratingCount)개의 평가"
     }
 }

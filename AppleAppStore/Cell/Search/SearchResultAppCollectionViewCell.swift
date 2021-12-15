@@ -142,7 +142,7 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         }
         
         iconView.snp.makeConstraints {
-            $0.top.leading.equalToSuperview().inset(10)
+            $0.top.leading.equalToSuperview()
             $0.width.height.equalTo(70)
         }
         
@@ -154,7 +154,7 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         
         appActionButton.snp.makeConstraints {
             $0.centerY.equalTo(iconView)
-            $0.trailing.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview()
             $0.width.equalTo(70)
         }
         
@@ -169,7 +169,7 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(iconView.snp.bottom).offset(10)
             $0.leading.equalTo(iconView)
             $0.trailing.equalTo(appActionButton)
-            $0.bottom.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview()
 //            $0.height.equalTo(300)
         }
         setup()

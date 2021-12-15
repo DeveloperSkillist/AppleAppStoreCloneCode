@@ -8,9 +8,10 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    var searchResultVC = SearchResultViewController()
     
     private lazy var searchController: UISearchController = {
-        var searchController = UISearchController(searchResultsController: SearchResultViewController())
+        var searchController = UISearchController(searchResultsController: searchResultVC)
         searchController.searchBar.placeholder = "search_placeholder".localized
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -72,4 +73,11 @@ extension SearchViewController: UISearchControllerDelegate {
 
 extension SearchViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {
+            return
+        }
+        
+        searchResultVC.searchItems(searchText: searchText)
+    }
 }

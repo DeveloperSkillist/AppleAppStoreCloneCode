@@ -16,6 +16,8 @@
 		360379322759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360379312759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift */; };
 		36037935275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36037934275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift */; };
 		36037939275A4FFC002AAAB6 /* RandomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36037938275A4FFC002AAAB6 /* RandomData.swift */; };
+		365523DA2769979A0084E4F3 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365523D92769979A0084E4F3 /* SearchResult.swift */; };
+		365523DC27699DB90084E4F3 /* ItunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365523DB27699DB90084E4F3 /* ItunesAPI.swift */; };
 		3655DBEB2758932900597095 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBEA2758932900597095 /* AppViewController.swift */; };
 		3655DBF12758B61C00597095 /* TodaySmallItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF02758B61C00597095 /* TodaySmallItem.swift */; };
 		3655DBF32758D31000597095 /* TodaySmallItemCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655DBF22758D31000597095 /* TodaySmallItemCollectionHeaderView.swift */; };
@@ -65,6 +67,8 @@
 		360379312759F872002AAAB6 /* AppLargeItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLargeItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		36037934275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSmallItemCollectionHeaderView.swift; sourceTree = "<group>"; };
 		36037938275A4FFC002AAAB6 /* RandomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomData.swift; sourceTree = "<group>"; };
+		365523D92769979A0084E4F3 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		365523DB27699DB90084E4F3 /* ItunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPI.swift; sourceTree = "<group>"; };
 		3655DBEA2758932900597095 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		3655DBF02758B61C00597095 /* TodaySmallItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySmallItem.swift; sourceTree = "<group>"; };
 		3655DBF22758D31000597095 /* TodaySmallItemCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySmallItemCollectionHeaderView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		365523D8276991720084E4F3 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				365523DB27699DB90084E4F3 /* ItunesAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		3655DBE9275892FA00597095 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +202,7 @@
 		3659323A2757845F00E08E8F /* AppleAppStore */ = {
 			isa = PBXGroup;
 			children = (
+				365523D8276991720084E4F3 /* API */,
 				3659326B2757980900E08E8F /* Util */,
 				3659325D27578D7000E08E8F /* Delegate */,
 				3659325C27578D5C00E08E8F /* Extension */,
@@ -360,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				366BDB3B276782A2000DB03C /* SearchItem.swift */,
+				365523D92769979A0084E4F3 /* SearchResult.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -539,6 +553,7 @@
 				365932712757991200E08E8F /* AccountProfileView.swift in Sources */,
 				365932632757941100E08E8F /* TodayAccountCollectionViewCell.swift in Sources */,
 				366BDB3927677F35000DB03C /* SearchResultViewController.swift in Sources */,
+				365523DA2769979A0084E4F3 /* SearchResult.swift in Sources */,
 				365932792757AB2F00E08E8F /* TodaySmallItemCollectionViewCell.swift in Sources */,
 				366BDB32276758E5000DB03C /* DetailReviewCollectionViewCell.swift in Sources */,
 				3659325227578C5D00E08E8F /* TodayCollectionViewController.swift in Sources */,
@@ -548,6 +563,7 @@
 				365A631C2764B7AE00D3D739 /* DetailScreenShotCollectionViewCell.swift in Sources */,
 				366BDB3727676443000DB03C /* SearchViewController.swift in Sources */,
 				360379302759DFD3002AAAB6 /* AppSmallItemCollectionViewCell.swift in Sources */,
+				365523DC27699DB90084E4F3 /* ItunesAPI.swift in Sources */,
 				36037935275A28FA002AAAB6 /* AppSmallItemCollectionHeaderView.swift in Sources */,
 				36037939275A4FFC002AAAB6 /* RandomData.swift in Sources */,
 				3659327327579CD900E08E8F /* TodayItem.swift in Sources */,

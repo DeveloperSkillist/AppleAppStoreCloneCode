@@ -36,4 +36,8 @@ class DetailScreenShotCollectionViewCell: UICollectionViewCell {
             $0.edges.equalToSuperview()
         }
     }
+    
+    func setupItem(screenUrl: String) {
+        imageView.downloadImage(url: screenUrl)
+    }
 }

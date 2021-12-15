@@ -124,9 +124,12 @@ class DetailMainCollectionViewCell: UICollectionViewCell {
             $0.centerY.equalTo(appActionButton)
             $0.leading.equalTo(appActionButton.snp.trailing).offset(5)
         }
-        
+    }
+    
+    func setupItem(item: SearchItemResult) {
         titleLabel.sizeToFit()
-        titleLabel.text = "tempfjhghjg\nasd"
-        infoLabel.text = "infoqweuiouwqioiofjsdlk"
+        imageView.downloadImage(url: item.artworkUrl512)
+        titleLabel.text = item.trackName
+        infoLabel.text = item.resultDescription
     }
 }

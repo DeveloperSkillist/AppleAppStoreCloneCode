@@ -9,13 +9,13 @@ import UIKit
 
 class SearchResultViewController: UIViewController {
     
+    weak var tempDelegate: DetailAppVCDelegate?
     var items: [SearchItemResult] = []
     
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.delega
         
         collectionView.register(SearchResultAppCollectionViewCell.self, forCellWithReuseIdentifier: "SearchResultAppCollectionViewCell")
         return collectionView
@@ -39,6 +39,20 @@ class SearchResultViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+    
+    private func resetResult() {
+        items = []
+        collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 }
 
 extension SearchResultViewController: UICollectionViewDataSource {
@@ -47,26 +61,33 @@ extension SearchResultViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let item = items[indexPath.row]
-//        switch item.itemType {
-//        case .app:
-//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultAppCollectionViewCell", for: indexPath) as? SearchResultAppCollectionViewCell else {
-//                return UICollectionViewCell()
-//            }
-//            return cell
-//
-//        case .etc:
-//            return UICollectionViewCell()
-//        }
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchResultAppCollectionViewCell", for: indexPath) as? SearchResultAppCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let item = items[indexPath.row]
+        cell.setupItem(item: item)
         return cell
     }
 }
 
+//extension SearchResultViewController: UICollectionViewDelegate {
+//
+//}
+
 extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        tempDelegate?.pushDetailVC(item: item)
+        
+//        let detailVC = DetailViewController()
+        
+//        navigationController?.pushViewController(detailVC, animated: true)
+        
+//        present(detailVC, animated: true, completion: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: collectionView.frame.width - 32, height: 330)
@@ -94,6 +115,8 @@ extension SearchResultViewController {
 
 extension SearchResultViewController {
     func searchItems(searchText: String) {
+        resetResult()
+        
         ItunesAPI.searchApps(term: searchText) { [weak self] data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -106,6 +129,7 @@ extension SearchResultViewController {
                 do {
                     let searchedItems = try JSONDecoder().decode(SearchResult.self, from: data)
                     
+                    print("searchedItems : \(searchedItems)")
                     self?.items = searchedItems.results
                     DispatchQueue.main.sync {
                         self?.collectionView.reloadData()

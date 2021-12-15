@@ -22,12 +22,15 @@ class ItunesAPI {
         var urlComponents = itunesURLComponents
         urlComponents.path = "/search"
         urlComponents.queryItems = [
-            URLQueryItem(name: "term", value: term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+            URLQueryItem(name: "entity", value: "software"),
+//            URLQueryItem(name: "term", value: term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
+            URLQueryItem(name: "term", value: term)
         ]
         
         guard let url = urlComponents.url else {
             return
         }
+        print("url : \(url.description)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

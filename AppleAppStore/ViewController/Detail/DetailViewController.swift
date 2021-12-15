@@ -9,7 +9,41 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    private var items: [DetailItem] = []
+    var item: SearchItemResult? {
+        willSet {
+            sections.removeAll()
+            
+            guard let item = newValue else {
+                return
+            }
+            
+            //TODO: section 설정
+            sections.append(
+                DetailItem(itemType: .main, headerType: .none)
+            )
+            
+            sections.append(
+                DetailItem(itemType: .infoShortItem, items: item.languageCodesISO2A, headerType: .line)
+            )
+            print("laungaceCode : \(item.languageCodesISO2A.count)")
+            
+            sections.append(
+                DetailItem(itemType: .screenShots, items: item.screenshotUrls, headerType: .none)
+            )
+            sections.append(
+                DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
+            )
+            sections.append(
+                DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
+            )
+            sections.append(
+                DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)
+            )
+            
+            
+        }
+    }
+    private var sections: [DetailItem] = []
     
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(
@@ -37,7 +71,7 @@ class DetailViewController: UIViewController {
     
     private lazy var collectionViewLayout: UICollectionViewLayout = {
         return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
-            let itemType = self?.items[section].itemType
+            let itemType = self?.sections[section].itemType
             switch itemType {
             case .main:
                 return self?.createMainSection()
@@ -64,7 +98,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
-        setDummyData()
     }
     
     private func setupLayout() {
@@ -234,31 +267,43 @@ extension DetailViewController {
 
 extension DetailViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return items.count
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].items.count
+        return sections[section].items?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch items[indexPath.section].itemType {
-            
+        guard let item = item else {
+            return UICollectionViewCell()
+        }
+        
+        let section = sections[indexPath.section]
+        
+        switch section.itemType {
         case .main:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMainCollectionViewCell", for: indexPath) as? DetailMainCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.setupItem(item: item)
             return cell
             
         case .infoShortItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailInfoShortItemCollectionViewCell", for: indexPath) as? DetailInfoShortItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            if let sectionItem = section.items?[indexPath.row] as? String {
+                cell.setupItem(item: sectionItem)
+            }
             return cell
             
         case .screenShots:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailScreenShotCollectionViewCell", for: indexPath) as? DetailScreenShotCollectionViewCell else {
                 return UICollectionViewCell()
+            }
+            if let screenUrl = section.items?[indexPath.row] as? String {
+                cell.setupItem(screenUrl: screenUrl)
             }
             return cell
             
@@ -286,7 +331,7 @@ extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            switch items[indexPath.section].headerType {
+            switch sections[indexPath.section].headerType {
                 
             case .line:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView", for: indexPath) as? DetailLineHeaderView else {
@@ -321,29 +366,5 @@ extension DetailViewController: UICollectionViewDataSource {
 extension DetailViewController: CollectionViewLayoutUpdateDelegate {
     func collectionViewLayoutUpdate() {
         self.collectionView.collectionViewLayout.invalidateLayout()
-    }
-}
-
-extension DetailViewController {
-    private func setDummyData() {
-        items.append(
-            DetailItem(itemType: .main, items: ["temp"], headerType: .none)
-        )
-        items.append(
-            DetailItem(itemType: .infoShortItem, items: ["temp","12","12","12","12","12"], headerType: .line)
-        )
-        items.append(
-            DetailItem(itemType: .screenShots, items: ["temp","12","12","12","12","12"], headerType: .none)
-        )
-        items.append(
-            DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
-        )
-        items.append(
-            DetailItem(itemType: .textInfo, items: ["temp"], headerType: .largeTitle)
-        )
-        items.append(
-            DetailItem(itemType: .review, items: ["temp","temp","temp","temp","temp","temp"], headerType: .review)
-        )
-        collectionView.reloadData()
     }
 }

@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     
     private lazy var searchController: UISearchController = {
         var searchController = UISearchController(searchResultsController: searchResultVC)
+        searchResultVC.tempDelegate = self
         searchController.searchBar.placeholder = "search_placeholder".localized
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -30,7 +31,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
+//        setupNavigationBar()
         setupLayout()
     }
     
@@ -51,7 +52,7 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        setupNavigationBar()
+        setupNavigationBar()
     }
     
     func setupNavigationBar() {
@@ -61,7 +62,8 @@ class SearchViewController: UIViewController {
 //        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
 //        searchController.isActive = true
-        navigationItem.hidesSearchBarWhenScrolling = true
+//        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.largeTitleDisplayMode = .automatic
 
         definesPresentationContext = true
     }
@@ -79,5 +81,13 @@ extension SearchViewController: UISearchBarDelegate {
         }
         
         searchResultVC.searchItems(searchText: searchText)
+    }
+}
+
+extension SearchViewController: DetailAppVCDelegate {
+    func pushDetailVC(item: SearchItemResult) {
+        let detailVC = DetailViewController()
+        detailVC.item = item
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

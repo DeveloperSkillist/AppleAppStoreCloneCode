@@ -12,7 +12,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         var imageView = DownloadableImageView()
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .label
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -59,7 +58,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         var imageView = DownloadableImageView()
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .label
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.lightGray.cgColor
@@ -70,7 +68,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         var imageView = DownloadableImageView()
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .label
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.lightGray.cgColor
@@ -81,7 +78,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         var imageView = DownloadableImageView()
         imageView.contentMode = .scaleToFill
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = .label
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.lightGray.cgColor
@@ -93,7 +89,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 5
-        stackView.backgroundColor = .blue
         [
             screenShotImageView1,
             screenShotImageView2,
@@ -130,7 +125,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLayout() {
-        backgroundColor = .orange
         [
             iconView,
             textStackView,
@@ -172,14 +166,24 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview()
 //            $0.height.equalTo(300)
         }
-        setup()
     }
     
-    func setup() {
-        mainText.text = "테스트 앱"
-        subText.text = "테스트 앱이거든요"
-        reviewText.text = "9.1만"
+    func setupItem(item: SearchItemResult) {
+        mainText.text = item.trackName
+        subText.text = item.resultDescription
+        reviewText.text = String(item.userRatingCount)
         inAppPurchaseText.text = "in_app_purchase".localized
+        
+        iconView.downloadImage(url: item.artworkUrl512)
+        
+//        print("screenshot count : \(item.screenshotUrls?.count)")
+        let screenShotUrls = item.screenshotUrls
+        if screenShotUrls.count > 0 {
+            screenShotImageView1.downloadImage(url: screenShotUrls[0])
+            print("screenshot: \(screenShotUrls[0])")
+            screenShotImageView2.downloadImage(url: screenShotUrls[1])
+            screenShotImageView3.downloadImage(url: screenShotUrls[2])
+        }
         
 //        if let url = item.imageURL {
 //            imageView.downloadImage(url: url)

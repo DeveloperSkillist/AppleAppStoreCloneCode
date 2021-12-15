@@ -15,44 +15,44 @@ struct SearchResult: Decodable {
 
 // MARK: - Result
 struct SearchItemResult: Decodable {
-    let screenshotUrls, ipadScreenshotUrls: [String]?
+    let screenshotUrls, ipadScreenshotUrls: [String]
 //    let appletvScreenshotUrls: [JSONAny]
-    let artworkUrl60, artworkUrl512, artworkUrl100: String?
+    let artworkUrl60, artworkUrl512, artworkUrl100: String
     let artistViewURL: String
-    let features: [String]?
-    let supportedDevices, advisories: [String]?
-    let isGameCenterEnabled: Bool?
+    let features: [String]
+    let supportedDevices, advisories: [String]
+    let isGameCenterEnabled: Bool
     let kind: String
-    let minimumOSVersion, trackCensoredName: String?
-    let languageCodesISO2A: [String]?
-    let fileSizeBytes: String?
+    let minimumOSVersion, trackCensoredName: String
+    let languageCodesISO2A: [String]
+    let fileSizeBytes: String
     let sellerURL: String?
-    let formattedPrice: String?
-    let contentAdvisoryRating: String?
-    let averageUserRatingForCurrentVersion: Double?
-    let userRatingCountForCurrentVersion: Int?
-    let averageUserRating: Double?
-    let trackViewURL: String?
-    let trackContentRating: String?
-    let bundleID: String?
-    let trackID: Int?
-    let trackName: String?
-//    let releaseDate: Date?
-    let primaryGenreName: String?
-    let genreIDS: [String]?
-    let isVppDeviceBasedLicensingEnabled: Bool?
-    let currentVersionReleaseDate: Date?
-    let sellerName, releaseNotes: String?
-    let primaryGenreID: Int?
-    let currency: String?
-    let version: String?
-    let wrapperType: String?
-    let artistID: Int?
-    let artistName: String?
-    let genres: [String]?
-    let price: Int?
-    let resultDescription: String?
-    let userRatingCount: Int?
+    let formattedPrice: String
+    let contentAdvisoryRating: String
+    let averageUserRatingForCurrentVersion: Double
+    let userRatingCountForCurrentVersion: Int
+    let averageUserRating: Double
+    let trackViewURL: String
+    let trackContentRating: String
+    let bundleID: String
+    let trackID: Int
+    let trackName: String
+//    let releaseDate: Date
+    let primaryGenreName: String
+    let genreIDS: [String]
+    let isVppDeviceBasedLicensingEnabled: Bool
+//    let currentVersionReleaseDate: Date
+    let sellerName, releaseNotes: String
+    let primaryGenreID: Int
+    let currency: String
+    let version: String
+    let wrapperType: String
+    let artistID: Int
+    let artistName: String
+    let genres: [String]
+    let price: Int
+    let resultDescription: String
+    let userRatingCount: Int
 
     enum CodingKeys: String, CodingKey {
         case screenshotUrls, ipadScreenshotUrls, artworkUrl60, artworkUrl512, artworkUrl100
@@ -67,9 +67,10 @@ struct SearchItemResult: Decodable {
         case bundleID = "bundleId"
         case trackID = "trackId"
         case trackName, primaryGenreName
-//        case releaseDate 
+//        case releaseDate
         case genreIDS = "genreIds"
-        case isVppDeviceBasedLicensingEnabled, currentVersionReleaseDate, sellerName, releaseNotes
+        case isVppDeviceBasedLicensingEnabled, sellerName, releaseNotes
+//        case currentVersionReleaseDate
         case primaryGenreID = "primaryGenreId"
         case currency, version, wrapperType
         case artistID = "artistId"

@@ -14,6 +14,7 @@ class DetailInfoShortItemCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 10)
         label.textColor = UIColor(named: "labelgray")
         label.textAlignment = .center
+        label.text = "지원 언어"
         return label
     }()
     
@@ -30,6 +31,7 @@ class DetailInfoShortItemCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 15, weight: .bold)
         label.textColor = UIColor(named: "labelgray")
         label.textAlignment = .center
+        label.text = "입니다."
         return label
     }()
     
@@ -65,9 +67,9 @@ class DetailInfoShortItemCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(middleLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalTo(topLabel)
         }
-        
-        topLabel.text = "test"
-        middleLabel.text = "asdqwe"
-        bottomLabel.text = "q2314"
+    }
+    
+    func setupItem(item: String) {
+        middleLabel.text = item
     }
 }

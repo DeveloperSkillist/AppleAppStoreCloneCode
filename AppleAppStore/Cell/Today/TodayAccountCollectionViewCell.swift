@@ -55,10 +55,10 @@ class TodayAccountCollectionViewCell: UICollectionViewCell {
         
         dateLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(largeTitle.snp.top)
         }
         
         largeTitle.snp.makeConstraints {
+            $0.top.equalTo(dateLabel.snp.bottom)
             $0.leading.equalTo(dateLabel)
             $0.bottom.equalTo(self.snp.bottom).inset(8)
         }

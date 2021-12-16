@@ -31,14 +31,16 @@ class DetailViewController: UIViewController {
             )
             
             sections.append(
-                DetailItem(itemType: .textInfo, items: [item.releaseNotes], headerType: .largeTitle)
+                DetailItem(itemType: .textDescription, headerType: .line)
             )
             
             sections.append(
                 DetailItem(itemType: .review, items: item.supportedDevices, headerType: .review)
             )
             
-            
+            sections.append(
+                DetailItem(itemType: .textInfo, headerType: .largeTitle)
+            )
         }
     }
     private var sections: [DetailItem] = []
@@ -79,6 +81,9 @@ class DetailViewController: UIViewController {
                 
             case .screenShots:
                 return self?.createScreenShotItemSection()
+                
+            case .textDescription:
+                return self?.createTextInfoWithHeaderSection()
                 
             case .textInfo:
                 return self?.createTextInfoWithHeaderSection()
@@ -296,6 +301,14 @@ extension DetailViewController: UICollectionViewDataSource {
             }
             return cell
             
+        case .textDescription:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.setupItem(text: item.resultDescription)
+            cell.collectionViewLayoutUpdateDelegate = self
+            return cell
+            
         case .screenShots:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailScreenShotCollectionViewCell", for: indexPath) as? DetailScreenShotCollectionViewCell else {
                 return UICollectionViewCell()
@@ -309,9 +322,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if let releaseNote = section.items?[indexPath.row] as? String {
-                cell.setupItem(text: releaseNote)
-            }
+            cell.setupItem(text: item.releaseNotes)
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
             

@@ -46,6 +46,7 @@ class TodaySmallItemCollectionViewCell: UICollectionViewCell {
         var label = UILabel()
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 13)
+        label.textAlignment = .center
         return label
     }()
     

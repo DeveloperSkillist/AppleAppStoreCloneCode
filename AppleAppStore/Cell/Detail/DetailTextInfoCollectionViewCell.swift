@@ -23,6 +23,7 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
         var button = UIButton()
         button.setTitleColor(.link, for: .normal)
         button.setTitle("더 보기", for: .normal)
+        button.backgroundColor = .systemBackground
         return button
     }()
     
@@ -53,8 +54,6 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
         moreButton.snp.makeConstraints {
             $0.trailing.bottom.equalTo(detailLabel)
         }
-        
-        
         
         sizeToFit()
     }

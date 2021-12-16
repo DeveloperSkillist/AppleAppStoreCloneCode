@@ -40,8 +40,6 @@ class AccountProfileView: UIView {
             $0.edges.equalToSuperview()
         }
         
-        self.backgroundColor = .label
-        self.layer.cornerRadius = self.layer.frame.height/2
         self.clipsToBounds = true
         self.backgroundColor = .label
         self.layer.cornerRadius = 15

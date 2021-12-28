@@ -22,7 +22,7 @@ class AppSmallItemCollectionHeaderView: UICollectionReusableView {
         return label
     }()
     
-    private lazy var allButton: UIButton = {
+    private lazy var headerButton: UIButton = {
         var button = UIButton()
         button.setTitle("show_all_title".localized, for: .normal)
         button.setTitleColor(.link, for: .normal)
@@ -44,7 +44,7 @@ class AppSmallItemCollectionHeaderView: UICollectionReusableView {
         [
             lineView,
             mainText,
-            allButton
+            headerButton
         ].forEach {
             addSubview($0)
         }
@@ -59,10 +59,10 @@ class AppSmallItemCollectionHeaderView: UICollectionReusableView {
             $0.top.equalTo(lineView.snp.bottom).offset(5)
             $0.leading.equalTo(lineView)
             $0.bottom.equalToSuperview()
-            $0.trailing.equalTo(allButton.snp.leading).offset(-10)
+            $0.trailing.equalTo(headerButton.snp.leading).offset(-10)
         }
         
-        allButton.snp.makeConstraints {
+        headerButton.snp.makeConstraints {
             $0.centerY.equalTo(mainText)
             $0.trailing.equalTo(lineView)
         }

@@ -31,15 +31,15 @@ class DownloadableImageView: UIImageView {
     
     init() {
         super.init(frame: .zero)
-        [
-            loadingView
-        ].forEach {
-            self.addSubview($0)
-        }
-        
-        loadingView.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-        }
+//        [
+//            loadingView
+//        ].forEach {
+//            self.addSubview($0)
+//        }
+//
+//        loadingView.snp.makeConstraints {
+//            $0.centerX.centerY.equalToSuperview()
+//        }
     }
     
     override init(frame: CGRect) {

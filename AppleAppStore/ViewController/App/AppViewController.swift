@@ -10,25 +10,8 @@ import SnapKit
 
 class AppViewController: UIViewController {
     
-    private lazy var layout: UICollectionViewLayout = {
-        return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
-            switch self?.items[section].type {
-            case .largeItem:
-                return self?.createLargeItemSection()
-                
-//            case .mediumItem:
-//                return self?.createMediumItemInfoSection()
-//                return nil
-                
-            case .smallItem:
-                return self?.createSmallItemSection()
-                
-            default:
-                return nil
-            }
-        }
-    }()
-
+    private var sections: [AppItem] = []
+    
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
@@ -43,28 +26,31 @@ class AppViewController: UIViewController {
         return collectionView
     }()
     
-    private var items: [AppItem] = []
+    private lazy var layout: UICollectionViewLayout = {
+        return UICollectionViewCompositionalLayout { [weak self] section, _ -> NSCollectionLayoutSection? in
+            guard let sectionType = self?.sections[section].type else {
+                return nil
+            }
+            
+            switch sectionType {
+            case .largeItem:
+                return self?.createLargeItemSection()
+                
+//            case .mediumItem:
+//                return self?.createMediumItemInfoSection()
+//                return nil
+                
+            case .smallItem:
+                return self?.createSmallItemSection()
+            }
+        }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupLayout()
         setupData()
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "app_title".localized
-        navigationController?.navigationBar.prefersLargeTitles = true
-        //large title text 설정
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
-
-        //TODO: large title에 accound 추가
-//        let accountProfileView = AccountProfileView() navigationController?.navigationBar.addSubview(accountProfileView)
-//        accountProfileView.snp.makeConstraints {
-//            $0.trailing.equalToSuperview().inset(16)
-//            $0.bottom.equalToSuperview().inset(10)
-//            $0.width.height.equalTo(30)
-//        }
     }
     
     private func setupLayout() {
@@ -83,6 +69,21 @@ class AppViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "app_title".localized
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //large title text 설정
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.label]
+
+        //TODO: large title에 accound 추가
+//        let accountProfileView = AccountProfileView() navigationController?.navigationBar.addSubview(accountProfileView)
+//        accountProfileView.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(16)
+//            $0.bottom.equalToSuperview().inset(10)
+//            $0.width.height.equalTo(30)
+//        }
     }
 }
 
@@ -159,21 +160,22 @@ extension AppViewController: UICollectionViewDelegate {
 
 extension AppViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return items.count
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].items.count
+        let section = sections[section]
+        return section.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let itemType = items[indexPath.section].type
-        switch itemType {
+        let sectionType = sections[indexPath.section].type
+        switch sectionType {
         case .largeItem:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppLargeItemCollectionViewCell", for: indexPath) as? AppLargeItemCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            guard let item = items[indexPath.section].items[indexPath.row] as? AppLargeItem else {
+            guard let item = sections[indexPath.section].items[indexPath.row] as? AppLargeItem else {
                 return UICollectionViewCell()
             }
             cell.setup(item: item)
@@ -186,7 +188,7 @@ extension AppViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppSmallItemsCollectionViewCell", for: indexPath) as? AppSmallItemsCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            guard let item = items[indexPath.section].items[indexPath.row] as? AppSmallItem else {
+            guard let item = sections[indexPath.section].items[indexPath.row] as? AppSmallItem else {
                 return UICollectionViewCell()
             }
             cell.setup(item: item)
@@ -199,7 +201,7 @@ extension AppViewController: UICollectionViewDataSource {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "AppSmallItemCollectionHeaderView", for: indexPath) as? AppSmallItemCollectionHeaderView else {
                 return UICollectionReusableView()
             }
-            let item = items[indexPath.section]
+            let item = sections[indexPath.section]
             headerView.setup(mainText: item.mainText)
             return headerView
         }
@@ -209,7 +211,7 @@ extension AppViewController: UICollectionViewDataSource {
 
 extension AppViewController {
     private func setupData() {
-        items = [
+        sections = [
             AppItem(
                 type: .largeItem,
                 items: [

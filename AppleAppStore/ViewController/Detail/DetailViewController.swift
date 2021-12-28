@@ -440,6 +440,26 @@ extension DetailViewController: UICollectionViewDataSource {
 }
 
 extension DetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        
+        //TODO: didSelect
+        switch section.itemType {
+        case .screenShots:
+            guard let screenShots = section.items as? [String] else {
+                return
+            }
+            let detailScreenshotsVC = DetailScreenShotsViewController()
+            detailScreenshotsVC.screenShots = screenShots
+            detailScreenshotsVC.startRow = indexPath.row
+            present(detailScreenshotsVC, animated: true, completion: nil)
+            
+        default:
+            return
+        }
+        
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
         isHiddenNavigationBarAppInfo = yOffset < 0

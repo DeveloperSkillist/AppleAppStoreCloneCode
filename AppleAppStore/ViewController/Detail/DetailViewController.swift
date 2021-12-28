@@ -9,6 +9,54 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    private lazy var navigationAppView: UIView = {
+        let uiView = UIView()
+        uiView.snp.makeConstraints {
+            $0.width.equalTo(64)
+            $0.height.equalTo(64)
+        }
+        
+        var iconView = DownloadableImageView()
+        if let item = item {
+            iconView.downloadImage(url: item.artworkUrl512)
+        }
+        iconView.layer.cornerRadius = 10
+        iconView.layer.masksToBounds = true
+        iconView.contentMode = .scaleAspectFit
+
+        uiView.addSubview(iconView)
+        
+        iconView.snp.makeConstraints {
+            $0.width.height.equalTo(40)
+            $0.center.equalTo(uiView)
+        }
+        return uiView
+    }()
+    
+    private lazy var navigationButton: UIBarButtonItem = {
+        let button = UIButton()
+        button.backgroundColor = .link
+        button.setTitle("받기", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.snp.makeConstraints {
+            $0.width.equalTo(70)
+        }
+        return UIBarButtonItem(customView: button)
+    }()
+    
+    lazy var isHiddenNavigationBarAppInfo: Bool = false {
+        didSet {
+            if oldValue == isHiddenNavigationBarAppInfo {
+                return
+            }
+            
+            navigationAppView.isHidden = isHiddenNavigationBarAppInfo
+            navigationButton.customView?.isHidden = isHiddenNavigationBarAppInfo
+        }
+    }
+    
     var item: SearchItemResult? {
         willSet {
             sections.removeAll()
@@ -53,7 +101,7 @@ class DetailViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         
         collectionView.dataSource = self
-//        collectionView.delegate = self
+        collectionView.delegate = self
         
         //cell
         collectionView.register(DetailMainCollectionViewCell.self, forCellWithReuseIdentifier: "DetailMainCollectionViewCell")
@@ -113,6 +161,9 @@ class DetailViewController: UIViewController {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        navigationItem.rightBarButtonItems = [navigationButton]
+        navigationItem.titleView = navigationAppView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +173,7 @@ class DetailViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.titleView?.isHidden = isHiddenNavigationBarAppInfo
     }
 }
 
@@ -322,7 +374,7 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailTextInfoCollectionViewCell", for: indexPath) as? DetailTextInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.setupItem(text: item.releaseNotes)
+            cell.setupItem(text: item.releaseNotes ?? "-")
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
             
@@ -384,6 +436,13 @@ extension DetailViewController: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
+    }
+}
+
+extension DetailViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        isHiddenNavigationBarAppInfo = yOffset < 0
     }
 }
 

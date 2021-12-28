@@ -27,7 +27,7 @@ struct SearchItemResult: Decodable {
     let languageCodesISO2A: [String]
     let fileSizeBytes: String
     let sellerURL: String?
-    let formattedPrice: String
+    let formattedPrice: String?
     let contentAdvisoryRating: String
     let averageUserRatingForCurrentVersion: Double
     let userRatingCountForCurrentVersion: Int
@@ -42,7 +42,8 @@ struct SearchItemResult: Decodable {
     let genreIDS: [String]
     let isVppDeviceBasedLicensingEnabled: Bool
 //    let currentVersionReleaseDate: Date
-    let sellerName, releaseNotes: String
+    let sellerName: String
+    let releaseNotes: String?
     let primaryGenreID: Int
     let currency: String
     let version: String
@@ -50,7 +51,7 @@ struct SearchItemResult: Decodable {
     let artistID: Int
     let artistName: String
     let genres: [String]
-    let price: Int
+    let price: Int?
     let resultDescription: String
     let userRatingCount: Int
 

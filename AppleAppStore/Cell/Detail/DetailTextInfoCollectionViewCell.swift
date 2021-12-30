@@ -24,6 +24,7 @@ class DetailTextInfoCollectionViewCell: UICollectionViewCell {
         button.setTitleColor(.link, for: .normal)
         button.setTitle("더 보기", for: .normal)
         button.backgroundColor = .systemBackground
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0.01, bottom: 0.01, right: 0)
         return button
     }()
     

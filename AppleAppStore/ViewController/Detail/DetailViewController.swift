@@ -423,7 +423,7 @@ extension DetailViewController: UICollectionViewDataSource {
                 )
                 if let item = item {
                     headerView.setupItem(
-                        rate: item.trackContentRating,
+                        rate: String(round(item.averageUserRating * 10)/10),
                         ratingCount: item.userRatingCount
                     )
                 }

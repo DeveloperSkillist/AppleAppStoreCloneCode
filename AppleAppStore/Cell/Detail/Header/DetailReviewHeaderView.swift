@@ -16,10 +16,42 @@ class DetailReviewHeaderView: DetailLargeTitleHeaderView {
         return label
     }()
     
-    private lazy var reviewRateView: UIView = {
-        var view = UIView()
-        view.backgroundColor = .orange
-        return view
+    private lazy var reviewRateView: UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        for starNum in 0...4 {
+            var view = UIStackView()
+            view.axis = .horizontal
+            view.spacing = 10
+            
+            var starStr = ""
+            for _ in 1...(5-starNum) {
+                starStr.append("★")
+            }
+            let starView = UILabel()
+            starView.text = starStr
+            starView.textColor = .gray
+            starView.textAlignment = .right
+            starView.font = .systemFont(ofSize: 8)
+            starView.snp.makeConstraints {
+                $0.width.equalTo(55)
+                $0.height.equalTo(10)
+            }
+            view.addArrangedSubview(starView)
+            
+            let progressView = UIProgressView()
+            progressView.progressTintColor = .gray
+            progressView.progress = .random(in: 0...1)
+            progressView.snp.makeConstraints {
+                $0.height.equalTo(5)
+            }
+            view.addArrangedSubview(progressView)
+            
+            stackView.addArrangedSubview(view)
+        }
+        return stackView
     }()
     
     private lazy var reviewSmallText: UILabel = {
@@ -68,12 +100,12 @@ class DetailReviewHeaderView: DetailLargeTitleHeaderView {
             $0.top.equalTo(largeTitleLabel.snp.bottom).offset(10)
             $0.leading.equalTo(largeTitleLabel)
             $0.trailing.equalTo(reviewRateView.snp.leading).offset(-10)
+            $0.height.equalTo(80)
         }
         
         reviewRateView.snp.makeConstraints {
-            $0.top.equalTo(reviewRateText)
             $0.trailing.equalToSuperview()
-            $0.bottom.equalTo(reviewRateText)
+            $0.centerY.equalTo(reviewRateText)
         }
         
         reviewSmallText.snp.makeConstraints {

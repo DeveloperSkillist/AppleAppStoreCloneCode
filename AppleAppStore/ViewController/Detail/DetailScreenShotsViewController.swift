@@ -14,7 +14,7 @@ class DetailScreenShotsViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("완료", for: .normal)
+        button.setTitle("close_title".localized, for: .normal)
         button.setTitleColor(.link, for: .normal)
         button.addTarget(self, action: #selector(closeVC), for: .touchUpInside)
         return button

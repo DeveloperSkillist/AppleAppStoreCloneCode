@@ -8,15 +8,25 @@
 
 "today_title" = "Today";
 "app_title" = "App";
-"down_title" = "Install";
 
+"down_title" = "Install";
 "in_app_purchase" = "in app purchase";
 
 "show_all_title" = "Show All";
 
 //MARK: App Detail
 "app_download_title" = "Install";
+"app_review_title" = "평가 및 리뷰";
+"app_new_feature" = "새로운 기능";
+"app_version_history" = "버전 기록";
+"app_support_lang" = "지원 언어";
+"app_support_lang_bottom" = "입니다.";
+"app_review_max_rate" = "(최고 5점)";
+"app_review_rate_count" = "개의 평가";
 
 //MARK: SearchVC
 "search_title" = "Search";
 "search_placeholder" = "Game, App, Story";
+
+//MARK: detailScreenShot
+"close_title" = "완료";

@@ -16,7 +16,17 @@
 
 //MARK: App Detail
 "app_download_title" = "받기";
+"app_review_title" = "평가 및 리뷰";
+"app_new_feature" = "새로운 기능";
+"app_version_history" = "버전 기록";
+"app_support_lang" = "지원 언어";
+"app_support_lang_bottom" = "입니다.";
+"app_review_max_rate" = "(최고 5점)";
+"app_review_rate_count" = "개의 평가";
 
 //MARK: SearchVC
 "search_title" = "검색";
 "search_placeholder" = "게임, 앱, 스토리 등";
+
+//MARK: detailScreenShot
+"close_title" = "완료";

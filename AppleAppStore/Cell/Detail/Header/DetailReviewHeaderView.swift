@@ -126,7 +126,7 @@ class DetailReviewHeaderView: DetailLargeTitleHeaderView {
     
     func setupItem(rate: String, ratingCount: Int) {
         reviewRateText.text = rate
-        reviewSmallText.text = "(최고 5점)"
-        reviewNumbersText.text = "\(ratingCount)개의 평가"
+        reviewSmallText.text = "app_review_max_rate".localized
+        reviewNumbersText.text = "\(ratingCount)" + "app_review_rate_count".localized
     }
 }

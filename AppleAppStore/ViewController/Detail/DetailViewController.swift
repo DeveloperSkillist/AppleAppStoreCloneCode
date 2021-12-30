@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
     private lazy var navigationButton: UIBarButtonItem = {
         let button = UIButton()
         button.backgroundColor = .link
-        button.setTitle("받기", for: .normal)
+        button.setTitle("app_download_title".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
@@ -410,7 +410,7 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView", for: indexPath) as? DetailLargeTitleHeaderView else {
                     return UICollectionReusableView()
                 }
-                headerView.setupLargeTitleData(largeTitleText: "새로운 기능", largeButtonText: "버전 기록")
+                headerView.setupLargeTitleData(largeTitleText: "app_new_feature".localized, largeButtonText: "app_version_history".localized)
                 return headerView
                 
             case .review:
@@ -418,8 +418,8 @@ extension DetailViewController: UICollectionViewDataSource {
                     return UICollectionReusableView()
                 }
                 headerView.setupLargeTitleData(
-                    largeTitleText: "평가 및 리뷰",
-                    largeButtonText: "모두 보기"
+                    largeTitleText: "app_review_title".localized,
+                    largeButtonText: "show_all_title".localized
                 )
                 if let item = item {
                     headerView.setupItem(

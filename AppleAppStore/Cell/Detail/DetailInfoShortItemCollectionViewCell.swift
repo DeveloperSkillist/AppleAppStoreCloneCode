@@ -14,7 +14,7 @@ class DetailInfoShortItemCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 10)
         label.textColor = UIColor(named: "labelgray")
         label.textAlignment = .center
-        label.text = "지원 언어"
+        label.text = "app_support_lang".localized
         return label
     }()
     
@@ -31,7 +31,7 @@ class DetailInfoShortItemCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 15, weight: .bold)
         label.textColor = UIColor(named: "labelgray")
         label.textAlignment = .center
-        label.text = "입니다."
+        label.text = "app_support_lang_bottom".localized
         return label
     }()
     

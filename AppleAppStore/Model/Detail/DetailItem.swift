@@ -26,7 +26,7 @@ enum DetailSection: Int {
 
 enum DetailSectionHeaderType {
     case line
-    case largeTitle
+    case largeTitleWithButton
     case review
     case none
 }

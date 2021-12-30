@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailReviewHeaderView: DetailLargeTitleHeaderView {
+class DetailReviewHeaderView: DetailLargeTitleWithButtonHeaderView {
     
     private lazy var reviewRateText: UILabel = {
         var label = UILabel()

@@ -1,5 +1,5 @@
 //
-//  DetailLargeTitleHeaderView.swift
+//  DetailLargeTitleWithButtonHeaderView.swift
 //  AppleAppStore
 //
 //  Created by skillist on 2021/12/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailLargeTitleHeaderView: DetailLineHeaderView {
+class DetailLargeTitleWithButtonHeaderView: DetailLineHeaderView {
     
     lazy var largeTitleLabel: UILabel = {
         var label = UILabel()

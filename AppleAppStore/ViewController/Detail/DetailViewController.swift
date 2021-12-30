@@ -87,7 +87,7 @@ class DetailViewController: UIViewController {
             )
             
             sections.append(
-                DetailItem(itemType: .textInfo, headerType: .largeTitle)
+                DetailItem(itemType: .textInfo, headerType: .largeTitleWithButton)
             )
         }
     }
@@ -112,7 +112,7 @@ class DetailViewController: UIViewController {
     
         //header
         collectionView.register(DetailLineHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView")
-        collectionView.register(DetailLargeTitleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView")
+        collectionView.register(DetailLargeTitleWithButtonHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleWithButtonHeaderView")
         collectionView.register(DetailReviewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView")
         return collectionView
     }()
@@ -406,8 +406,8 @@ extension DetailViewController: UICollectionViewDataSource {
                 }
                 return headerView
                 
-            case .largeTitle:
-                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleHeaderView", for: indexPath) as? DetailLargeTitleHeaderView else {
+            case .largeTitleWithButton:
+                guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleWithButtonHeaderView", for: indexPath) as? DetailLargeTitleWithButtonHeaderView else {
                     return UICollectionReusableView()
                 }
                 headerView.setupLargeTitleData(largeTitleText: "app_new_feature".localized, largeButtonText: "app_version_history".localized)

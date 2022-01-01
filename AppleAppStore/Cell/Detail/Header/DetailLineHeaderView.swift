@@ -27,7 +27,8 @@ class DetailLineHeaderView: UICollectionReusableView {
     private func setupLine() {
         addSubview(lineView)
         lineView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(2.5)
             $0.height.equalTo(1)
         }
     }

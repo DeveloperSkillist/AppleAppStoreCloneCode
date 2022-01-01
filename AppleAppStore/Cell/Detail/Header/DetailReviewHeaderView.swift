@@ -82,7 +82,7 @@ class DetailReviewHeaderView: DetailLargeTitleWithButtonHeaderView {
         largeTitleLabel.snp.removeConstraints()
         largeTitleLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(10)
-            $0.leading.equalToSuperview()
+            $0.leading.equalToSuperview().inset(2.5)
             $0.trailing.equalTo(largeButton.snp.leading).offset(-10)
             $0.height.equalTo(30)
         }
@@ -104,7 +104,7 @@ class DetailReviewHeaderView: DetailLargeTitleWithButtonHeaderView {
         }
         
         reviewRateView.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(2.5)
             $0.centerY.equalTo(reviewRateText)
         }
         

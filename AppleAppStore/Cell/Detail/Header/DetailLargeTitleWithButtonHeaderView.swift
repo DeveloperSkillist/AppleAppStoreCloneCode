@@ -37,7 +37,8 @@ class DetailLargeTitleWithButtonHeaderView: DetailLineHeaderView {
     private func setupLargeTitleLayout() {
         lineView.snp.removeConstraints()
         lineView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(2.5)
             $0.height.equalTo(1)
         }
         
@@ -50,14 +51,14 @@ class DetailLargeTitleWithButtonHeaderView: DetailLineHeaderView {
         
         largeTitleLabel.snp.makeConstraints {
             $0.top.equalTo(lineView.snp.bottom).offset(10)
-            $0.leading.equalToSuperview()
+            $0.leading.equalTo(lineView)
             $0.trailing.equalTo(largeButton.snp.leading).offset(-10)
             $0.bottom.equalToSuperview()
             $0.height.equalTo(30)
         }
         
         largeButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
+            $0.trailing.equalTo(lineView)
             $0.centerY.equalTo(largeTitleLabel)
         }
     }

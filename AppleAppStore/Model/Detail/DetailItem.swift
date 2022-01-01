@@ -11,6 +11,7 @@ struct DetailItem {
     var itemType: DetailSection
     var items: [Any]?
     var itemNames: [String]?
+    var isExpanded: [Bool]?
     var headerType: DetailSectionHeaderType
 }
 

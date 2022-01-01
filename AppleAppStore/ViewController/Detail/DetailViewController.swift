@@ -107,6 +107,13 @@ class DetailViewController: UIViewController {
                         "최소 버전",
                         "배포 노트"
                     ],
+                    isExpanded: [
+                        false,
+                        false,
+                        false,
+                        false,
+                        false
+                    ],
                     headerType: .largeTitleWithButton
                 )
             )
@@ -447,11 +454,15 @@ extension DetailViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailInfoInfoCollectionViewCell", for: indexPath) as? DetailInfoInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            
             let section = sections[indexPath.section]
             if let itemName = section.itemNames?[indexPath.row],
-               let item = section.items?[indexPath.row] as? String {
-                cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item)
+               let item = section.items?[indexPath.row] as? String,
+               let isExpanded = section.isExpanded?[indexPath.row] {
+                cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item, isExpanded: isExpanded)
             }
+            
+            cell.indexPath = indexPath
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
         }
@@ -537,5 +548,9 @@ extension DetailViewController: UICollectionViewDelegate {
 extension DetailViewController: CollectionViewLayoutUpdateDelegate {
     func collectionViewLayoutUpdate() {
         self.collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    func expandCell(indexPath: IndexPath) {
+        sections[indexPath.section].isExpanded?[indexPath.row] = true
     }
 }

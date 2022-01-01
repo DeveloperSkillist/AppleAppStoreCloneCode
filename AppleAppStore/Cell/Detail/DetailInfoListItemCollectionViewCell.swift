@@ -9,6 +9,7 @@ import UIKit
 
 class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
     
+    var indexPath: IndexPath?
     weak var collectionViewLayoutUpdateDelegate: CollectionViewLayoutUpdateDelegate?
     
     private lazy var infoTitleLabel: UILabel = {
@@ -45,6 +46,12 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        shortInfoLabel.isHidden = false
+        moreButton.isHidden = false
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -53,6 +60,22 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupItem(infoName: String, shortInfo: String, detailInfo: String?, isExpanded: Bool) {
+        infoTitleLabel.text = infoName
+        shortInfoLabel.text = shortInfo
+        
+        guard let detailInfo = detailInfo else {
+            setupItem(infoName: infoName, shortInfo: shortInfo)
+            return
+        }
+        detailInfoLabel.text = detailInfo
+        
+        setupItem(infoName: infoName, shortInfo: shortInfo, detailInfo: detailInfo)
+        if isExpanded {
+            showDetailInfo()
+        }
     }
     
     private func setupItem(infoName: String, shortInfo: String) {
@@ -76,18 +99,10 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview()
         }
         
-        infoTitleLabel.text = infoName
-        shortInfoLabel.text = shortInfo
-        
         sizeToFit()
     }
     
-    func setupItem(infoName: String, shortInfo: String, detailInfo: String?) {
-        if detailInfo == nil {
-            setupItem(infoName: infoName, shortInfo: shortInfo)
-            return
-        }
-        
+    private func setupItem(infoName: String, shortInfo: String, detailInfo: String) {
         [
             infoTitleLabel,
             shortInfoLabel,
@@ -116,18 +131,21 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
             $0.width.equalTo(30)
         }
         
-        infoTitleLabel.text = infoName
-        shortInfoLabel.text = shortInfo
-        detailInfoLabel.text = detailInfo
-        
         sizeToFit()
     }
     
     private func setupAction() {
-        moreButton.addTarget(self, action: #selector(showDetailInfo), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(expandCell), for: .touchUpInside)
     }
     
-    @objc private func showDetailInfo() {
+    @objc private func expandCell() {
+        if let indexPath = indexPath {
+            collectionViewLayoutUpdateDelegate?.expandCell(indexPath: indexPath)
+        }
+        showDetailInfo()
+    }
+    
+    private func showDetailInfo() {
         shortInfoLabel.isHidden = true
         moreButton.isHidden = true
         

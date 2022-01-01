@@ -9,4 +9,6 @@ import Foundation
 
 protocol CollectionViewLayoutUpdateDelegate: AnyObject {
     func collectionViewLayoutUpdate()
+    
+    func expandCell(indexPath: IndexPath)
 }

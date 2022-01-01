@@ -10,6 +10,7 @@ import Foundation
 struct DetailItem {
     var itemType: DetailSection
     var items: [Any]?
+    var itemNames: [String]?
     var headerType: DetailSectionHeaderType
 }
 

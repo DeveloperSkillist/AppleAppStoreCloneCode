@@ -89,6 +89,27 @@ class DetailViewController: UIViewController {
             sections.append(
                 DetailItem(itemType: .textInfo, headerType: .largeTitleWithButton)
             )
+            
+            sections.append(
+                DetailItem(
+                    itemType: .infoListItem,
+                    items: [
+                        item.artistName,
+                        item.fileSizeBytes,
+                        item.languageCodesISO2A.description,
+                        item.minimumOSVersion,
+                        item.releaseNotes
+                    ],
+                    itemNames: [
+                        "제공자",
+                        "크기",
+                        "언어",
+                        "최소 버전",
+                        "배포 노트"
+                    ],
+                    headerType: .largeTitleWithButton
+                )
+            )
         }
     }
     private var sections: [DetailItem] = []
@@ -109,11 +130,13 @@ class DetailViewController: UIViewController {
         collectionView.register(DetailScreenShotCollectionViewCell.self, forCellWithReuseIdentifier: "DetailScreenShotCollectionViewCell")
         collectionView.register(DetailTextInfoCollectionViewCell.self, forCellWithReuseIdentifier: "DetailTextInfoCollectionViewCell")
         collectionView.register(DetailReviewCollectionViewCell.self, forCellWithReuseIdentifier: "DetailReviewCollectionViewCell")
-    
+        collectionView.register(DetailInfoInfoCollectionViewCell.self, forCellWithReuseIdentifier: "DetailInfoInfoCollectionViewCell")
+        
         //header
         collectionView.register(DetailLineHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView")
         collectionView.register(DetailLargeTitleWithButtonHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleWithButtonHeaderView")
         collectionView.register(DetailReviewHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailReviewHeaderView")
+        
         return collectionView
     }()
     
@@ -138,6 +161,9 @@ class DetailViewController: UIViewController {
                 
             case .review:
                 return self?.createReviewSection()
+                
+            case .infoListItem:
+                return self?.createInfoListItemSection()
                 
             default:
                 return nil
@@ -300,6 +326,33 @@ extension DetailViewController {
         
         return section
     }
+    
+    private func createInfoListItemSection() -> NSCollectionLayoutSection {
+        let itemMargin: CGFloat = 5
+        let sectionMargin: CGFloat = 15
+        
+        //item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: itemMargin, leading: itemMargin, bottom: itemMargin, trailing: itemMargin)
+        
+        //group
+        let width = (self.view.frame.width - (sectionMargin * 2))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .estimated(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+//        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
+        section.contentInsets = .init(top: sectionMargin, leading: sectionMargin, bottom: sectionMargin, trailing: sectionMargin)
+        
+        //header
+        let sectionHeader = createHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        return section
+    }
 }
 
 extension DetailViewController {
@@ -391,14 +444,24 @@ extension DetailViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
             
         case .infoListItem:
-            return UICollectionViewCell()
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailInfoInfoCollectionViewCell", for: indexPath) as? DetailInfoInfoCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let section = sections[indexPath.section]
+            if let itemName = section.itemNames?[indexPath.row],
+               let item = section.items?[indexPath.row] as? String {
+                cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item)
+            }
+            cell.collectionViewLayoutUpdateDelegate = self
+            return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            switch sections[indexPath.section].headerType {
+            let section = sections[indexPath.section]
+            switch section.headerType {
                 
             case .line:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLineHeaderView", for: indexPath) as? DetailLineHeaderView else {
@@ -410,7 +473,12 @@ extension DetailViewController: UICollectionViewDataSource {
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailLargeTitleWithButtonHeaderView", for: indexPath) as? DetailLargeTitleWithButtonHeaderView else {
                     return UICollectionReusableView()
                 }
-                headerView.setupLargeTitleData(largeTitleText: "app_new_feature".localized, largeButtonText: "app_version_history".localized)
+                
+                if section.itemType == .textInfo {
+                    headerView.setupLargeTitleData(largeTitleText: "app_new_feature".localized, largeButtonText: "app_version_history".localized)
+                } else if section.itemType == .infoListItem {
+                    headerView.setupLargeTitleData(largeTitleText: "정보", largeButtonText: nil)
+                }
                 return headerView
                 
             case .review:

@@ -57,6 +57,7 @@
 		366BDB3927677F35000DB03C /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3827677F35000DB03C /* SearchResultViewController.swift */; };
 		366BDB3C276782A2000DB03C /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3B276782A2000DB03C /* SearchItem.swift */; };
 		366BDB3F27678678000DB03C /* SearchResultAppCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366BDB3E27678678000DB03C /* SearchResultAppCollectionViewCell.swift */; };
+		36776CC02780893400B524F4 /* SearchHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36776CBF2780893400B524F4 /* SearchHistoryCollectionViewCell.swift */; };
 		368E341C277B32C500F69DC1 /* DetailScreenShotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368E341B277B32C500F69DC1 /* DetailScreenShotsViewController.swift */; };
 		36944F2D2768AA6C00F40C5C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 36944F2C2768AA6C00F40C5C /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		366BDB3827677F35000DB03C /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		366BDB3B276782A2000DB03C /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		366BDB3E27678678000DB03C /* SearchResultAppCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultAppCollectionViewCell.swift; sourceTree = "<group>"; };
+		36776CBF2780893400B524F4 /* SearchHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		368E341B277B32C500F69DC1 /* DetailScreenShotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreenShotsViewController.swift; sourceTree = "<group>"; };
 		36944F2C2768AA6C00F40C5C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		43D700261A3E92FB9BF68406 /* Pods_AppleAppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppleAppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +392,7 @@
 		366BDB3D27678575000DB03C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				36776CBF2780893400B524F4 /* SearchHistoryCollectionViewCell.swift */,
 				366BDB3E27678678000DB03C /* SearchResultAppCollectionViewCell.swift */,
 			);
 			path = Search;
@@ -586,6 +589,7 @@
 				3659323E2757845F00E08E8F /* SceneDelegate.swift in Sources */,
 				365A631E2764D97D00D3D739 /* DetailLineHeaderView.swift in Sources */,
 				3655DBF12758B61C00597095 /* TodaySmallItem.swift in Sources */,
+				36776CC02780893400B524F4 /* SearchHistoryCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,6 +51,7 @@ class SearchResultViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
     }
 }

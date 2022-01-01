@@ -11,6 +11,14 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
     
     var indexPath: IndexPath?
     weak var collectionViewLayoutUpdateDelegate: CollectionViewLayoutUpdateDelegate?
+    let lineViewTag = 1
+    
+    private lazy var lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.tag = lineViewTag
+        return view
+    }()
     
     private lazy var infoTitleLabel: UILabel = {
         var label = UILabel()
@@ -50,6 +58,8 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         shortInfoLabel.isHidden = false
         moreButton.isHidden = false
+        
+        viewWithTag(lineViewTag)?.removeFromSuperview()
     }
     
     override init(frame: CGRect) {
@@ -62,7 +72,47 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupAction() {
+        moreButton.addTarget(self, action: #selector(expandCell), for: .touchUpInside)
+    }
+    
+    @objc private func expandCell() {
+        if let indexPath = indexPath {
+            collectionViewLayoutUpdateDelegate?.expandCell(indexPath: indexPath)
+        }
+        showDetailInfo()
+    }
+    
+    private func showDetailInfo() {
+        shortInfoLabel.isHidden = true
+        moreButton.isHidden = true
+        
+        addSubview(detailInfoLabel)
+        
+        infoTitleLabel.snp.removeConstraints()
+        infoTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(10)
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(30)
+            $0.width.equalTo(100)
+        }
+        
+        detailInfoLabel.snp.makeConstraints {
+            $0.top.equalTo(infoTitleLabel.snp.bottom)
+            $0.leading.equalTo(infoTitleLabel)
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(10)
+        }
+        
+        collectionViewLayoutUpdateDelegate?.collectionViewLayoutUpdate()
+    }
+    
     func setupItem(infoName: String, shortInfo: String, detailInfo: String?, isExpanded: Bool) {
+        
+        if let row = indexPath?.row, row > 0 {
+            addLineView()
+        }
+        
         infoTitleLabel.text = infoName
         shortInfoLabel.text = shortInfo
         
@@ -134,38 +184,16 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
         sizeToFit()
     }
     
-    private func setupAction() {
-        moreButton.addTarget(self, action: #selector(expandCell), for: .touchUpInside)
-    }
-    
-    @objc private func expandCell() {
-        if let indexPath = indexPath {
-            collectionViewLayoutUpdateDelegate?.expandCell(indexPath: indexPath)
-        }
-        showDetailInfo()
-    }
-    
-    private func showDetailInfo() {
-        shortInfoLabel.isHidden = true
-        moreButton.isHidden = true
-        
-        addSubview(detailInfoLabel)
-        
-        infoTitleLabel.snp.removeConstraints()
-        infoTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview()
-            $0.height.equalTo(30)
-            $0.width.equalTo(100)
+    private func addLineView() {
+        [
+            lineView
+        ].forEach {
+            addSubview($0)
         }
         
-        detailInfoLabel.snp.makeConstraints {
-            $0.top.equalTo(infoTitleLabel.snp.bottom)
-            $0.leading.equalTo(infoTitleLabel)
-            $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(10)
+        lineView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
         }
-        
-        collectionViewLayoutUpdateDelegate?.collectionViewLayoutUpdate()
     }
 }

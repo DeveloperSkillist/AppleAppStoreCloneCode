@@ -455,6 +455,8 @@ extension DetailViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
+            cell.indexPath = indexPath
+            
             let section = sections[indexPath.section]
             if let itemName = section.itemNames?[indexPath.row],
                let item = section.items?[indexPath.row] as? String,
@@ -462,7 +464,6 @@ extension DetailViewController: UICollectionViewDataSource {
                 cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item, isExpanded: isExpanded)
             }
             
-            cell.indexPath = indexPath
             cell.collectionViewLayoutUpdateDelegate = self
             return cell
         }

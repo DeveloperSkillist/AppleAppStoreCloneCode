@@ -82,6 +82,9 @@ class SearchResultViewController: UIViewController {
     }
     
     private func resetResult() {
+        collectionView.isHidden = true
+        emptyView.isHidden = true
+        
         items = []
         collectionView.reloadData()
     }

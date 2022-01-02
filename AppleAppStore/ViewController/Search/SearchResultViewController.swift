@@ -10,7 +10,15 @@ import UIKit
 class SearchResultViewController: UIViewController {
     
     weak var tempDelegate: DetailAppVCDelegate?
-    var items: [SearchItemResult] = []
+    var items: [SearchItemResult] = [] {
+        willSet {
+            let isEmpty = newValue.count == 0
+            DispatchQueue.main.async {
+                self.collectionView.isHidden = isEmpty
+                self.emptyView.isHidden = !isEmpty
+            }
+        }
+    }
     
     private lazy var emptyView: UIView = {
         var emptyLabel = UILabel()
@@ -162,10 +170,6 @@ extension SearchResultViewController {
                     self?.items = searchedItems.results
                     DispatchQueue.main.sync {
                         self?.collectionView.reloadData()
-                        
-                        let isEmpty = searchedItems.results.count == 0
-                        self?.collectionView.isHidden = isEmpty
-                        self?.emptyView.isHidden = !isEmpty
                     }
                 } catch {
                     print("error: \(error)")

@@ -15,15 +15,39 @@ Apple의 AppStore 앱을 따라 개발한 프로젝트 입니다.<br>
 
 <br><br>
 
+|                      Today Tab                       |
+| :--------------------------------------------------: |
+| <img src="./ScreenShots/Today_Tab.gif" width="50%"/> |
+
+<br><br>
+
 |                      Today Tab                      |
 | :-------------------------------------------------: |
 | <img src="./ScreenShots/TodayTab.png" width="50%"/> |
 
 <br><br>
 
+|                      App Tab                       |
+| :------------------------------------------------: |
+| <img src="./ScreenShots/App_Tab.gif" width="50%"/> |
+
+<br><br>
+
 |                      App Tab                      |
 | :-----------------------------------------------: |
 | <img src="./ScreenShots/AppTab.png" width="50%"/> |
+
+<br><br>
+
+|                        Search Tab                         |
+| :-------------------------------------------------------: |
+| <img src="./ScreenShots/Search_Tab_new.gif" width="50%"/> |
+
+<br><br>
+
+|                          Search Tab                          |
+| :----------------------------------------------------------: |
+| <img src="./ScreenShots/SearchTab1.JPG" width="50%"/><br/><img src="./ScreenShots/SearchTab2.JPG" width="50%"/> |
 
 <br><br>
 

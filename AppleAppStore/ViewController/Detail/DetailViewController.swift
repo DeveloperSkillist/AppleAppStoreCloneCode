@@ -221,7 +221,7 @@ extension DetailViewController {
         item.contentInsets = .init(top: itemMargin, leading: itemMargin, bottom: itemMargin, trailing: itemMargin)
         
         //group
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(self.view.frame.width - sectionMargin), heightDimension: .absolute(100))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(self.view.frame.width - (sectionMargin * 2)), heightDimension: .absolute(100))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
 //        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         

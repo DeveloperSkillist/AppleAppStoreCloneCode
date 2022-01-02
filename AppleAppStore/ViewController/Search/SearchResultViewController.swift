@@ -18,6 +18,11 @@ class SearchResultViewController: UIViewController {
                 self.emptyView.isHidden = !isEmpty
             }
         }
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     private lazy var emptyView: UIView = {
@@ -50,9 +55,9 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupNavigationBar()
         setupLayout()
-        setData()
     }
     
     private func setupNavigationBar() {
@@ -133,21 +138,6 @@ extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 50
     }
-    
-}
-
-extension SearchResultViewController {
-    func setData() {
-//        items.append(
-//            SearchItem(itemType: .app, item: "asd")
-//        )
-//
-//        items.append(
-//            SearchItem(itemType: .app, item: "asd")
-//        )
-        
-        collectionView.reloadData()
-    }
 }
 
 extension SearchResultViewController {
@@ -168,9 +158,6 @@ extension SearchResultViewController {
                     
                     print("searchedItems : \(searchedItems)")
                     self?.items = searchedItems.results
-                    DispatchQueue.main.sync {
-                        self?.collectionView.reloadData()
-                    }
                 } catch {
                     print("error: \(error)")
                 }

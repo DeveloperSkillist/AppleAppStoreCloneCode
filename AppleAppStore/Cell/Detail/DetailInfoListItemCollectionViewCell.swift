@@ -41,7 +41,7 @@ class DetailInfoInfoCollectionViewCell: UICollectionViewCell {
         var button = UIButton()
         button.setTitle("", for: .normal)
         button.setImage(UIImage.init(systemName: "chevron.down"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .label
         button.backgroundColor = .systemBackground
         return button
     }()

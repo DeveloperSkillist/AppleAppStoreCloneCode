@@ -27,7 +27,8 @@
 //MARK: SearchVC
 "search_title" = "Search";
 "search_placeholder" = "Game, App, Story";
-"search_empty" = "검색결과가 없습니다.";
+"search_empty" = "검색 결과가 없습니다.";
+"search_history_empty" = "검색 내역이 없습니다.";
 
 //MARK: detailScreenShot
 "close_title" = "완료";

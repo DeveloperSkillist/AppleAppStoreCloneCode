@@ -51,7 +51,7 @@ struct SearchItemResult: Decodable {
     let artistID: Int
     let artistName: String
     let genres: [String]
-    let price: Int?
+    let price: Double?
     let resultDescription: String
     let userRatingCount: Int
 

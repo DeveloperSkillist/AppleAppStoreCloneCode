@@ -9,8 +9,33 @@ import UIKit
 
 class SearchViewController: UIViewController {
     var searchResultVC = SearchResultViewController()
-    var searchHistory: [String] = []
+    var searchHistory: [String] = [] {
+        willSet {
+            let isEmpty = newValue.count == 0
+            historyCollectionView.isHidden = isEmpty
+            emptyView.isHidden = !isEmpty
+        }
+    }
     let historyQuerys = "historyQuerys"
+    
+    private lazy var emptyView: UIView = {
+        var emptyLabel = UILabel()
+        emptyLabel.textColor = .label
+        emptyLabel.text = "search_history_empty".localized
+        emptyLabel.font = .systemFont(ofSize: 20)
+        emptyLabel.numberOfLines = 0
+        
+        var emptyView = UIView()
+        emptyView.backgroundColor = .systemBackground
+        emptyView.addSubview(emptyLabel)
+        emptyView.isHidden = true
+        
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview().inset(20)
+        }
+        
+        return emptyView
+    }()
     
     private lazy var searchController: UISearchController = {
         var searchController = UISearchController(searchResultsController: searchResultVC)
@@ -45,12 +70,17 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         [
-            historyCollectionView
+            historyCollectionView,
+            emptyView
         ].forEach {
             view.addSubview($0)
         }
         
         historyCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

@@ -10,8 +10,8 @@ import UIKit
 class SearchViewController: UIViewController {
     var searchResultVC = SearchResultViewController()
     var searchHistory: [String] = [] {
-        willSet {
-            let isEmpty = newValue.count == 0
+        didSet {
+            let isEmpty = searchHistory.count == 0
             historyCollectionView.isHidden = isEmpty
             emptyView.isHidden = !isEmpty
         }

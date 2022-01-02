@@ -11,16 +11,13 @@ class SearchResultViewController: UIViewController {
     
     weak var detailAppDelegate: DetailAppVCDelegate?
     var items: [SearchItemResult] = [] {
-        willSet {
-            let isEmpty = newValue.count == 0
-            DispatchQueue.main.async {
-                self.collectionView.isHidden = isEmpty
-                self.emptyView.isHidden = !isEmpty
-            }
-        }
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                
+                let isEmpty = self.items.count == 0
+                self.collectionView.isHidden = isEmpty
+                self.emptyView.isHidden = !isEmpty
             }
         }
     }
@@ -48,7 +45,7 @@ class SearchResultViewController: UIViewController {
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+        collectionView.keyboardDismissMode = .onDrag
         collectionView.register(SearchResultAppCollectionViewCell.self, forCellWithReuseIdentifier: "SearchResultAppCollectionViewCell")
         return collectionView
     }()

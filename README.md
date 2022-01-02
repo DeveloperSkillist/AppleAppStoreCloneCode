@@ -15,9 +15,9 @@ Apple의 AppStore 앱을 따라 개발한 프로젝트 입니다.<br>
 
 <br><br>
 
-|                      Today Tab                       |
-| :--------------------------------------------------: |
-| <img src="./ScreenShots/Today_Tab.gif" width="50%"/> |
+|                       Today Tab                       |
+| :---------------------------------------------------: |
+| <img src="./ScreenShots/Today_Tab.gif" width="100%"/> |
 
 <br><br>
 
@@ -27,9 +27,9 @@ Apple의 AppStore 앱을 따라 개발한 프로젝트 입니다.<br>
 
 <br><br>
 
-|                      App Tab                       |
-| :------------------------------------------------: |
-| <img src="./ScreenShots/App_Tab.gif" width="50%"/> |
+|                       App Tab                       |
+| :-------------------------------------------------: |
+| <img src="./ScreenShots/App_Tab.gif" width="100%"/> |
 
 <br><br>
 
@@ -39,9 +39,9 @@ Apple의 AppStore 앱을 따라 개발한 프로젝트 입니다.<br>
 
 <br><br>
 
-|                        Search Tab                         |
-| :-------------------------------------------------------: |
-| <img src="./ScreenShots/Search_Tab_new.gif" width="50%"/> |
+|                         Search Tab                         |
+| :--------------------------------------------------------: |
+| <img src="./ScreenShots/Search_Tab_new.gif" width="100%"/> |
 
 <br><br>
 

@@ -12,6 +12,25 @@ class SearchResultViewController: UIViewController {
     weak var tempDelegate: DetailAppVCDelegate?
     var items: [SearchItemResult] = []
     
+    private lazy var emptyView: UIView = {
+        var emptyLabel = UILabel()
+        emptyLabel.textColor = .label
+        emptyLabel.text = "search_empty".localized
+        emptyLabel.font = .systemFont(ofSize: 20)
+        emptyLabel.numberOfLines = 0
+        
+        var emptyView = UIView()
+        emptyView.backgroundColor = .systemBackground
+        emptyView.addSubview(emptyLabel)
+        emptyView.isHidden = true
+        
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview().inset(20)
+        }
+        
+        return emptyView
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.dataSource = self
@@ -33,9 +52,18 @@ class SearchResultViewController: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubview(collectionView)
+        [
+            collectionView,
+            emptyView
+        ].forEach {
+            view.addSubview($0)
+        }
         
         collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
@@ -134,6 +162,10 @@ extension SearchResultViewController {
                     self?.items = searchedItems.results
                     DispatchQueue.main.sync {
                         self?.collectionView.reloadData()
+                        
+                        let isEmpty = searchedItems.results.count == 0
+                        self?.collectionView.isHidden = isEmpty
+                        self?.emptyView.isHidden = !isEmpty
                     }
                 } catch {
                     print("error: \(error)")

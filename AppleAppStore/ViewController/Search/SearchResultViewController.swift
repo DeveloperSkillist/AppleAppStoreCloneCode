@@ -9,7 +9,7 @@ import UIKit
 
 class SearchResultViewController: UIViewController {
     
-    weak var tempDelegate: DetailAppVCDelegate?
+    weak var detailAppDelegate: DetailAppVCDelegate?
     var items: [SearchItemResult] = [] {
         willSet {
             let isEmpty = newValue.count == 0
@@ -116,7 +116,7 @@ extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = items[indexPath.row]
-        tempDelegate?.pushDetailVC(item: item)
+        detailAppDelegate?.pushDetailVC(item: item)
         
 //        let detailVC = DetailViewController()
         

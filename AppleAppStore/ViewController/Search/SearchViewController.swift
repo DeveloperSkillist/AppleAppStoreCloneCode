@@ -39,14 +39,11 @@ class SearchViewController: UIViewController {
     
     private lazy var searchController: UISearchController = {
         var searchController = UISearchController(searchResultsController: searchResultVC)
-        searchResultVC.tempDelegate = self
+        searchResultVC.detailAppDelegate = self
         searchController.searchBar.placeholder = "search_placeholder".localized
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
         searchController.delegate = self
-        
         searchController.searchBar.delegate = self
-        searchController.searchBar.setNeedsLayout()
         return searchController
     }()
     
@@ -61,7 +58,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        setupNavigationBar()
         setupLayout()
         setupHistoryQuerys()
     }
@@ -97,15 +93,9 @@ class SearchViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-//        navigationController?.navigationItem.searchController = searchController
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "search_title".localized
-//        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
-//        searchController.isActive = true
-//        navigationItem.hidesSearchBarWhenScrolling = true
-        navigationItem.largeTitleDisplayMode = .automatic
-
         definesPresentationContext = true
     }
 }

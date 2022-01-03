@@ -112,6 +112,7 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         var label = UILabel()
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: 13)
+        label.textAlignment = .center
         return label
     }()
     
@@ -176,7 +177,6 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
         
         iconView.downloadImage(url: item.artworkUrl512)
         
-//        print("screenshot count : \(item.screenshotUrls?.count)")
         let screenShotUrls = item.screenshotUrls
         if screenShotUrls.count > 0 {
             screenShotImageView1.downloadImage(url: screenShotUrls[0])
@@ -184,13 +184,5 @@ class SearchResultAppCollectionViewCell: UICollectionViewCell {
             screenShotImageView2.downloadImage(url: screenShotUrls[1])
             screenShotImageView3.downloadImage(url: screenShotUrls[2])
         }
-        
-//        if let url = item.imageURL {
-//            imageView.downloadImage(url: url)
-//        } else if let image = item.image {
-//            imageView.image = image
-//        }
-        
-//        inAppPurchaseText.isHidden = !item.isInAppPurchase
     }
 }

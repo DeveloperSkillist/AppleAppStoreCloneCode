@@ -53,12 +53,7 @@ class SearchResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
         setupLayout()
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.title = "search_title".localized
     }
     
     private func setupLayout() {
@@ -76,24 +71,6 @@ class SearchResultViewController: UIViewController {
         emptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-    
-    private func resetResult() {
-        collectionView.isHidden = true
-        emptyView.isHidden = true
-        
-        items = []
-        collectionView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -113,21 +90,11 @@ extension SearchResultViewController: UICollectionViewDataSource {
     }
 }
 
-//extension SearchResultViewController: UICollectionViewDelegate {
-//
-//}
-
 extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         detailAppDelegate?.pushDetailVC(item: item)
-        
-//        let detailVC = DetailViewController()
-        
-//        navigationController?.pushViewController(detailVC, animated: true)
-        
-//        present(detailVC, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -167,5 +134,12 @@ extension SearchResultViewController {
                 return
             }
         }
+    }
+    
+    private func resetResult() {
+        items = []
+        
+        collectionView.isHidden = true
+        emptyView.isHidden = true
     }
 }

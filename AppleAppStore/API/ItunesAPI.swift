@@ -23,7 +23,6 @@ class ItunesAPI {
         urlComponents.path = "/search"
         urlComponents.queryItems = [
             URLQueryItem(name: "entity", value: "software"),
-//            URLQueryItem(name: "term", value: term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
             URLQueryItem(name: "term", value: term)
         ]
         

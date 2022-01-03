@@ -96,7 +96,7 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "search_title".localized
         navigationItem.searchController = searchController
-        definesPresentationContext = true
+//        definesPresentationContext = true
     }
 }
 

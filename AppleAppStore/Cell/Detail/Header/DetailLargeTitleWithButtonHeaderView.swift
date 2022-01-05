@@ -20,7 +20,6 @@ class DetailLargeTitleWithButtonHeaderView: DetailLineHeaderView {
         var button = UIButton()
         button.setTitleColor(.link, for: .normal)
         button.isHidden = true
-//        button.titleLabel?.textAlignment = .right
         return button
     }()
     
@@ -63,10 +62,7 @@ class DetailLargeTitleWithButtonHeaderView: DetailLineHeaderView {
         }
     }
     
-    func setupLargeTitleData(
-        largeTitleText: String,
-        largeButtonText: String?
-    ) {
+    func setupLargeTitleData(largeTitleText: String, largeButtonText: String?) {
         largeTitleLabel.text = largeTitleText
         if let buttonText = largeButtonText {
             largeButton.isHidden = false

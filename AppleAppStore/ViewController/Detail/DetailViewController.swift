@@ -244,7 +244,7 @@ extension DetailViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(100))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 //        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         //section
@@ -270,7 +270,7 @@ extension DetailViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute((collectionView.frame.width - sectionMargin) / 1.5), heightDimension: .absolute(500))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 //        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         //section
@@ -292,7 +292,6 @@ extension DetailViewController {
         
         //group
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(collectionView.frame.width - sectionMargin), heightDimension: .estimated(1))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 //        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
@@ -320,7 +319,7 @@ extension DetailViewController {
         //group
         let width = (self.view.frame.width - (sectionMargin * 2))
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(width * 0.7))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 //        group.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         //section
@@ -387,7 +386,7 @@ extension DetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections[section].items?.count ?? 0
+        return sections[section].items?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -462,6 +461,7 @@ extension DetailViewController: UICollectionViewDataSource {
             if let itemName = section.itemNames?[indexPath.row],
                let item = section.items?[indexPath.row] as? String,
                let isExpanded = section.isExpanded?[indexPath.row] {
+//                cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item, isExpanded: isExpanded)
                 cell.setupItem(infoName: itemName, shortInfo: item, detailInfo: item, isExpanded: isExpanded)
             }
             
@@ -538,7 +538,6 @@ extension DetailViewController: UICollectionViewDelegate {
         default:
             return
         }
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
